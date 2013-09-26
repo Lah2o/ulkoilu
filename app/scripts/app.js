@@ -1,5 +1,10 @@
 /*global define */
-define(['leaflet', 'data/koirapuistot', 'data/luontopolkurastit'], function(L, Koirapuistot, Luontopolkurastit) {
+define([
+    'leaflet', 
+    'data/koirapuistot', 
+    'data/luontopolkurastit',
+    'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
+], function(L, Koirapuistot, Luontopolkurastit) {
     'use strict';
 
     var Config = {
