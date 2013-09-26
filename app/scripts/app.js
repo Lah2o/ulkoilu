@@ -36,7 +36,7 @@ define(['leaflet', 'data/koirapuistot'], function(L, Koirapuistot) {
         var marker = L.marker([
             position.coords.latitude,
             position.coords.longitude
-        ]).addTo(map);
+        ], {icon: L.AwesomeMarkers.icon({icon: 'icon-user', color: 'red', spin:true}) }).addTo(map);
 
         drawPolygons(Koirapuistot.features);
     };
