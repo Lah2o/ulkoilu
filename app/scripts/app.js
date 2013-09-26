@@ -1,5 +1,5 @@
 /*global define */
-define(['leaflet', 'data/koirapuistot'], function(L, Koirapuistot) {
+define(['leaflet', 'data/koirapuistot', 'data/luontopolkurastit'], function(L, Koirapuistot, Luontopolkurastit) {
     'use strict';
 
     var Config = {
@@ -21,6 +21,16 @@ define(['leaflet', 'data/koirapuistot'], function(L, Koirapuistot) {
         }
     };
 
+    var drawPoints = function(dataset) {
+        for (var i = dataset.length - 1; i >= 0; i--) {
+            var point = dataset[i].geometry.coordinates;
+            L.marker([
+                dataset[i].geometry.coordinates[1],
+                dataset[i].geometry.coordinates[0]
+            ]).addTo(window.map);
+        }
+    };
+
     var drawMap = function(position) {
         window.map = L.map('map').setView([
             //keskitetään käyttäjän olinpaikkaan
@@ -39,6 +49,7 @@ define(['leaflet', 'data/koirapuistot'], function(L, Koirapuistot) {
         ]).addTo(map);
 
         drawPolygons(Koirapuistot.features);
+        drawPoints(Luontopolkurastit.features);
     };
 
     var userLocation = navigator.geolocation.getCurrentPosition(drawMap.bind(this));
