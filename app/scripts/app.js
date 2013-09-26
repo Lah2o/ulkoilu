@@ -1,13 +1,29 @@
 /*global define */
-define(['leaflet'], function(L) {
+define(['leaflet', 'data/koirapuistot'], function(L, Koirapuistot) {
     'use strict';
 
     var Config = {
         appKey: '32fb713c6d034b4a9d8df1d4f0768b5b'
     };
 
+    var drawPolygons = function(dataset) {
+        for (var i = dataset.length - 1; i >= 0; i--) {
+            var area = (dataset[i].geometry.coordinates[0]);
+            var coordinates = [];
+
+            for (var j = area.length - 1; j >= 0; j--) {
+                coordinates.push([area[j][1], area[j][0]]);
+            }
+            // Nyt meillä on yhden alueen koordinaatit oikein päin 
+            // muuttujassa coordinates
+            // Lisätään polygoni karttaan
+            L.polygon(coordinates).addTo(window.map);
+        }
+    };
+
     var drawMap = function(position) {
-        var map = L.map('map').setView([
+        window.map = L.map('map').setView([
+            //keskitetään käyttäjän olinpaikkaan
             position.coords.latitude,
             position.coords.longitude
         ], 13);
@@ -22,8 +38,7 @@ define(['leaflet'], function(L) {
             position.coords.longitude
         ]).addTo(map);
 
-        var marker2 = L.marker ([68.23444806532111,24.479046098939348]).addTo(map);
-
+        drawPolygons(Koirapuistot.features);
     };
 
     var userLocation = navigator.geolocation.getCurrentPosition(drawMap.bind(this));
