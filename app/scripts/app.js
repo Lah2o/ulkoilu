@@ -46,7 +46,7 @@ define(['leaflet', 'data/koirapuistot', 'data/luontopolkurastit'], function(L, K
         var marker = L.marker([
             position.coords.latitude,
             position.coords.longitude
-        ]).addTo(map);
+        ], {icon: L.AwesomeMarkers.icon({icon: 'icon-user', color: 'red', spin:true}) }).addTo(map);
 
         drawPolygons(Koirapuistot.features);
         drawPoints(Luontopolkurastit.features);
