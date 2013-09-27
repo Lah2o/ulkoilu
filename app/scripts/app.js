@@ -54,7 +54,7 @@ define([
         ], {icon: L.AwesomeMarkers.icon({icon: 'icon-user', color: 'red', spin:true}) }).addTo(map);
 
         drawPolygons(Koirapuistot.features);
-        drawPoints(Luontopolkurastit.features);
+        drawPoints(Luontopolkurastit.features, {icon: L.AwesomeMarkers.icon({icon: 'icon-compass', color: 'green', spin:false}) });
     };
 
     var userLocation = navigator.geolocation.getCurrentPosition(drawMap.bind(this));
