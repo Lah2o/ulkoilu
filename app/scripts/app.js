@@ -26,13 +26,13 @@ define([
         }
     };
 
-    var drawPoints = function(dataset, ikoni) {
+    var drawPoints = function(dataset, ikoni, vari, pyorii) {
         for (var i = dataset.length - 1; i >= 0; i--) {
             var point = dataset[i].geometry.coordinates;
             L.marker([
                 dataset[i].geometry.coordinates[1],
                 dataset[i].geometry.coordinates[0]
-            ], {icon: L.AwesomeMarkers.icon({ikoni}) }).addTo(window.map);
+            ], {icon: L.AwesomeMarkers.icon({icon: ikoni, color: vari, spin:pyorii}) }).addTo(window.map);
         }
     };
 
@@ -54,7 +54,7 @@ define([
         ], {icon: L.AwesomeMarkers.icon({icon: 'icon-user', color: 'red', spin:true}) }).addTo(map);
 
         drawPolygons(Koirapuistot.features);
-        drawPoints(Luontopolkurastit.features, "icon: 'icon-compass', color: 'green', spin:false"}) });
+        drawPoints(Luontopolkurastit.features, 'icon-compass', 'green',false}) });
     };
 
     var userLocation = navigator.geolocation.getCurrentPosition(drawMap.bind(this));
