@@ -3,8 +3,9 @@ define([
     'leaflet', 
     'data/koirapuistot', 
     'data/luontopolkurastit',
+    'data/talviliukumaet',
     'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
-], function(L, Koirapuistot, Luontopolkurastit) {
+], function(L, Koirapuistot, Luontopolkurastit, Talviliukumaet) {
     'use strict';
 
     var Config = {
@@ -55,6 +56,7 @@ define([
 
         drawPolygons(Koirapuistot.features);
         drawPoints(Luontopolkurastit.features, {icon: 'icon-compass', color: 'green', spin:false});
+        drawPoints (Talviliukumaet.features);
     };
 
     var userLocation = navigator.geolocation.getCurrentPosition(drawMap.bind(this));
