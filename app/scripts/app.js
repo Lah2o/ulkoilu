@@ -1,18 +1,22 @@
 /*global define */
 define([
-    'leaflet', 
-    'data/koirapuistot', 
+    'leaflet',
+    'data/koirapuistot',
     'data/luontopolkurastit',
     'data/talviliukumaet',
+    'data/pyoratiet',
+    'data/kentat',
     'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
-], function(L, Koirapuistot, Luontopolkurastit, Talviliukumaet) {
+], function(L, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat) {
     'use strict';
 
     var Config = {
         appKey: '32fb713c6d034b4a9d8df1d4f0768b5b'
     };
 
-    var drawPolygons = function(dataset) {
+    var drawPolygons = function(dataset, options) {
+        options = options || {};
+
         for (var i = dataset.length - 1; i >= 0; i--) {
             var area = (dataset[i].geometry.coordinates[0]);
             var coordinates = [];
@@ -23,17 +27,38 @@ define([
             // Nyt meillä on yhden alueen koordinaatit oikein päin 
             // muuttujassa coordinates
             // Lisätään polygoni karttaan
-            L.polygon(coordinates).addTo(window.map);
+            // Lisätään polygoneihin popup, joka esittää alueen nimen
+            var text = dataset[i].properties.ALUE_NIMI;
+            L.polygon(coordinates, options)
+                .bindPopup(text)
+                .addTo(window.map);
         }
     };
 
     var drawPoints = function(dataset, ikoni) {
         for (var i = dataset.length - 1; i >= 0; i--) {
-            var point = dataset[i].geometry.coordinates;
+            var text = dataset[i].properties.ALUE_NIMI;
+
             L.marker([
                 dataset[i].geometry.coordinates[1],
                 dataset[i].geometry.coordinates[0]
-            ], {icon: L.AwesomeMarkers.icon(ikoni) }).addTo(window.map);
+            ], {icon: L.AwesomeMarkers.icon(ikoni) })
+                .bindPopup(text)
+                .addTo(window.map);
+        }
+    };
+
+    var drawLine = function(dataset) {
+        for (var i = dataset.length - 1; i >= 0; i--) {
+            var line = [];
+            for (var j = dataset[i].geometry.coordinates.length - 1; j >= 0; j--) {
+                line.push([
+                    dataset[i].geometry.coordinates[j][1],
+                    dataset[i].geometry.coordinates[j][0]
+                ]);
+            }
+            // Viivan koordinaatit ovat oikein päin
+            L.polyline(line).addTo(window.map);
         }
     };
 
@@ -47,16 +72,20 @@ define([
         L.tileLayer('http://{s}.tile.cloudmade.com/' + Config.appKey + '/997/256/{z}/{x}/{y}.png', {
             attribution: '',
             maxZoom: 18
-        }).addTo(map);
+        }).addTo(window.map);
 
         var marker = L.marker([
             position.coords.latitude,
             position.coords.longitude
-        ], {icon: L.AwesomeMarkers.icon({icon: 'icon-user', color: 'red', spin:true}) }).addTo(map);
+        ], {icon: L.AwesomeMarkers.icon({icon: 'icon-user', color: 'red', spin:true}) }).addTo(window.map);
 
         drawPolygons(Koirapuistot.features);
         drawPoints(Luontopolkurastit.features, {icon: 'icon-compass', color: 'green', spin:false});
-        drawPoints (Talviliukumaet.features);
+        drawPoints(Talviliukumaet.features);
+        drawPolygons(Kentat.features, {
+            color: 'hotpink'
+        });
+        // drawLine(Pyoratiet.features);
     };
 
     var userLocation = navigator.geolocation.getCurrentPosition(drawMap.bind(this));
