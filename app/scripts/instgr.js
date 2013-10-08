@@ -20,7 +20,7 @@ Instagram.Config = {
     bindEventHandlers();
     photoTemplate = _.template($('#photo-template').html());
   }
-
+//Luo objektin photo sen ominaisuuksilla
   function toTemplate(photo){
     photo = {
       count: photo.likes.count,
