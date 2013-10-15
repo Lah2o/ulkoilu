@@ -6,18 +6,18 @@ define(['backbone', 'views/map-view', 'views/haaste-view'], function(Backbone, M
     var MainRouter = Backbone.Router.extend({
 
         routes: {
-            '': 'home',
+            '': 'showPage',
             ':page': 'showPage'
         },
 
-        home: function() {
-            this.mapView = this.mapView || new MapView();
-            $('#page').html(this.mapView.render().el);
-            this.mapView.renderMap();
-        },
-
         showPage: function(page) {
+            page = page || '';
             switch(page) {
+            case '':
+                this.mapView = this.mapView || new MapView();
+                $('#page').html(this.mapView.render().el);
+                this.mapView.renderMap();
+                break;
             case 'haaste':
                 this.haasteView = this.haasteView || new HaasteView();
                 $('#page').html(this.haasteView.render().el);

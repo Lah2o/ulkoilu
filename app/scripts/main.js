@@ -56,7 +56,7 @@ require.config({
         bootstrapAlert: '../bower_components/sass-bootstrap/js/alert',
         bootstrapButton: '../bower_components/sass-bootstrap/js/button',
         bootstrapCarousel: '../bower_components/sass-bootstrap/js/carousel',
-        bootstrapCollapse: '../bower_components/sass-bootstrap/js/collapse',
+        bootstrapCollapse: '../bower_components/sass-bootstrap/js/bootstrap-collapse',
         bootstrapDropdown: '../bower_components/sass-bootstrap/js/dropdown',
         bootstrapPopover: '../bower_components/sass-bootstrap/js/popover',
         bootstrapScrollspy: '../bower_components/sass-bootstrap/js/scrollspy',
