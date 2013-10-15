@@ -81,7 +81,7 @@ define([
 
         drawPolygons(Koirapuistot.features);
         drawPoints(Luontopolkurastit.features, {icon: 'icon-compass', color: 'green', spin:false});
-        drawPoints(Talviliukumaet.features);
+        drawPoints(Talviliukumaet.features), {icon: 'icon-asterisk', color 'blue', spin:false});
         drawPolygons(Kentat.features, {
             color: 'hotpink'
         });
