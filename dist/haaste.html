@@ -59,37 +59,34 @@
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
-<div class="row">
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" alt="...">
-      <div class="caption">
-        <h3>Haaste 1</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary">Avaa</a></p>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-        <img data-src="holder.js/300x200" alt="...">
-        <div class="caption">
-          <h3>Haaste 1</h3>
-          <p>...</p>
-          <p><a href="#" class="btn btn-primary">Avaa</a></p>
+
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+
+          <div id="photos-wrap">
+          </div>
+
+          <div class="paginate">
+            <a class="btn" style="display:none" data-max-tag-id="" href="#">Katso lisää...</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-        <img data-src="holder.js/300x200" alt="...">
-        <div class="caption">
-          <h3>Haaste 1</h3>
-          <p>...</p>
-          <p><a href="#" class="btn btn-primary">Avaa</a></p>
-        </div>
+
+    <script type="scripts/instagr" id="photo-template">
+      <div class='photo'>
+        <a href='<%= url %>' target='_blank'>
+          <img class='main' src='<%= photo %>' width='250' height='250' style='display:none;' onload='Instagram.App.showPhoto(this);'/>
+        </a>
+        <img class='avatar' width='40' height='40' src='<%= avatar %>' />
+        <span class='heart'><strong><%= count %></strong></span>
+        <span class='location'><%= longitude %> <%= latitude %></span>
       </div>
-    </div>
-  </div>
-</div>
+    </script>
+
+
+
+
 </body>
 </html>
