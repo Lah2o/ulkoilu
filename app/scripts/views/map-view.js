@@ -7,8 +7,9 @@ define([
     'data/talviliukumaet',
     'data/pyoratiet',
     'data/kentat',
+    'data/luontopolkureitit',
     'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
-], function(Backbone, L, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat) {
+], function(Backbone, L, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat, Luontopolkureitit) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -58,14 +59,15 @@ define([
         },
 
         drawLine: function(dataset) {
+            // console.log(dataset);
             for (var i = dataset.length - 1; i >= 0; i--) {
 
                 var line = [];
                 for (var j = dataset[i].geometry.coordinates.length - 1; j >= 0; j--) {
-                    line.push([
+                    line.push(new L.LatLng(
                         dataset[i].geometry.coordinates[j][1],
                         dataset[i].geometry.coordinates[j][0]
-                    ]);
+                    ));
                 }
                 // Viivan koordinaatit ovat oikein päin
                 L.polyline(line).addTo(this.map);
@@ -96,6 +98,7 @@ define([
             this.drawPolygons(Kentat.features, {
                 color: 'hotpink'
             });
+            this.drawLine(Luontopolkureitit.features);
             // drawLine(Pyoratiet.features);
         },
 
