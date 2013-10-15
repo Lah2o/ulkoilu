@@ -7,9 +7,21 @@ html, body {
     height: 100%;
 }
 
-#map {
+#page {
     height: 100%;
-    width: 100%;
+}
+
+#map-view {
+    position: relative;
+    height: 100%;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .browsehappy {
@@ -98,7 +110,7 @@ body {
     }
 }
 
-/* 
+/*
 
 leaflet.awesome-markers.css
 

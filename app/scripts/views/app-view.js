@@ -1,5 +1,9 @@
 /*global define*/
-define(['backbone', 'views/navigation-view'], function(Backbone, NavigationView) {
+define([
+	'backbone',
+	'views/navigation-view',
+	'views/map-view'
+], function(Backbone, NavigationView, MapView) {
 
 	'use strict';
 
@@ -7,9 +11,16 @@ define(['backbone', 'views/navigation-view'], function(Backbone, NavigationView)
 
 		el: 'body',
 
+		initialize: function() {
+			this.mapView = new MapView();
+		},
+
 		render: function() {
-			$('#main-navigation').html(
+			this.$el.prepend(
 				new NavigationView().render().el
+			);
+			$('#page').html(
+				this.mapView.el
 			);
 			return this;
 		}
