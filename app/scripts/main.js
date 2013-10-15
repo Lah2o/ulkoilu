@@ -68,7 +68,7 @@ require.config({
         backbone: '../bower_components/backbone/backbone',
         handlebars: '../bower_components/handlebars/handlebars',
 
-        leaflet: 'http://cdn.leafletjs.com/leaflet-0.6.4/leaflet',
+        leaflet: '../bower_components/leaflet-dist/leaflet',
 
         /* Alias text.js for template loading and shortcut the templates dir to tmpl */
         text: '../bower_components/requirejs-text/text',
