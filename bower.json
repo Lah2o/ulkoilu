@@ -7,7 +7,11 @@
     "modernizr": "~2.6.2",
     "jquery": "~1.10.2",
     "leaflet": "~0.6.4",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "backbone": "~1.1.0",
+    "handlebars": "~1.0.0",
+    "require-handlebars-plugin": "~0.4.0",
+    "requirejs-text": "~2.0.10"
   },
   "devDependencies": {}
 }

@@ -1,21 +1,20 @@
 require.config({
-    paths: {
-        jquery: '../bower_components/jquery/jquery',
-        bootstrapAffix: '../bower_components/sass-bootstrap/js/affix',
-        bootstrapAlert: '../bower_components/sass-bootstrap/js/alert',
-        bootstrapButton: '../bower_components/sass-bootstrap/js/button',
-        bootstrapCarousel: '../bower_components/sass-bootstrap/js/carousel',
-        bootstrapCollapse: '../bower_components/sass-bootstrap/js/collapse',
-        bootstrapDropdown: '../bower_components/sass-bootstrap/js/dropdown',
-        bootstrapPopover: '../bower_components/sass-bootstrap/js/popover',
-        bootstrapScrollspy: '../bower_components/sass-bootstrap/js/scrollspy',
-        bootstrapTab: '../bower_components/sass-bootstrap/js/tab',
-        bootstrapTooltip: '../bower_components/sass-bootstrap/js/tooltip',
-        bootstrapTransition: '../bower_components/sass-bootstrap/js/transition',
-
-        leaflet: 'http://cdn.leafletjs.com/leaflet-0.6.4/leaflet'
-    },
     shim: {
+        underscore: {
+            exports: '_'
+        },
+        backbone: {
+            deps: [
+                'underscore',
+                'jquery'
+            ],
+            exports: 'Backbone'
+        },
+        handlebars: {
+            deps: [],
+            exports: 'Handlebars'
+        },
+
         bootstrapAffix: {
             deps: ['jquery']
         },
@@ -49,12 +48,46 @@ require.config({
         bootstrapTransition: {
             deps: ['jquery']
         }
-    }
+    },
+
+    paths: {
+        jquery: '../bower_components/jquery/jquery',
+        bootstrapAffix: '../bower_components/sass-bootstrap/js/affix',
+        bootstrapAlert: '../bower_components/sass-bootstrap/js/alert',
+        bootstrapButton: '../bower_components/sass-bootstrap/js/button',
+        bootstrapCarousel: '../bower_components/sass-bootstrap/js/carousel',
+        bootstrapCollapse: '../bower_components/sass-bootstrap/js/collapse',
+        bootstrapDropdown: '../bower_components/sass-bootstrap/js/dropdown',
+        bootstrapPopover: '../bower_components/sass-bootstrap/js/popover',
+        bootstrapScrollspy: '../bower_components/sass-bootstrap/js/scrollspy',
+        bootstrapTab: '../bower_components/sass-bootstrap/js/tab',
+        bootstrapTooltip: '../bower_components/sass-bootstrap/js/tooltip',
+        bootstrapTransition: '../bower_components/sass-bootstrap/js/transition',
+
+        underscore: '../bower_components/underscore/underscore',
+        backbone: '../bower_components/backbone/backbone',
+        handlebars: '../bower_components/handlebars/handlebars',
+
+        leaflet: 'http://cdn.leafletjs.com/leaflet-0.6.4/leaflet',
+
+        /* Alias text.js for template loading and shortcut the templates dir to tmpl */
+        text: '../bower_components/requirejs-text/text',
+        tmpl: 'template',
+
+        /* require handlebars plugin - Alex Sexton */
+        i18nprecompile: '../bower_components/require-handlebars-plugin/hbs/i18nprecompile',
+        json2: '../bower_components/require-handlebars-plugin/hbs/json2',
+        hbs: '../bower_components/require-handlebars-plugin/hbs',
+    },
+
+    hbs: {
+        disableI18n: true
+    },
+
 });
 
-require(['app', 'jquery'], function (app, $) {
+require(['backbone', 'views/app-view'], function (Backbone, AppView) {
     'use strict';
-    // use app here
-    console.log(app);
-    console.log('Running jQuery %s', $().jquery);
+    
+    new AppView().render();
 });
