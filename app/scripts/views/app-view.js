@@ -2,8 +2,7 @@
 define([
 	'backbone',
 	'views/navigation-view',
-	'views/map-view'
-], function(Backbone, NavigationView, MapView) {
+], function(Backbone, NavigationView) {
 
 	'use strict';
 
@@ -12,15 +11,12 @@ define([
 		el: 'body',
 
 		initialize: function() {
-			this.mapView = new MapView();
+			Backbone.history.start();
 		},
 
 		render: function() {
 			this.$el.prepend(
 				new NavigationView().render().el
-			);
-			$('#page').html(
-				this.mapView.el
 			);
 			return this;
 		}

@@ -86,8 +86,17 @@ require.config({
 
 });
 
-require(['backbone', 'views/app-view'], function (Backbone, AppView) {
+require(['backbone', 'router', 'views/app-view'], function (Backbone, MainRouter, AppView) {
     'use strict';
-    
-    new AppView().render();
+
+    var start = function(position) {
+        window.App.userLocation = position;
+        new AppView().render();
+    };
+
+    window.App = {
+        Vent: _.extend({}, Backbone.Events),
+        Router: new MainRouter(),
+    };
+    navigator.geolocation.getCurrentPosition(start);
 });

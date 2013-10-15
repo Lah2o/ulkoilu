@@ -20,7 +20,7 @@ define([
         },
 
         initialize: function() {
-            var userLocation = navigator.geolocation.getCurrentPosition(this.render.bind(this));
+            console.log( 'init mapview' );
         },
 
         drawPolygons: function(dataset, options) {
@@ -72,9 +72,9 @@ define([
             }
         },
 
-        render: function(position) {
-            this.el.innerHTML = '<div id="map"></div>',
-            this.map = L.map('map').setView([
+        renderMap: function() {
+            var position = window.App.userLocation;
+            this.map = L.map( 'map' ).setView([
                 //keskitetään käyttäjän olinpaikkaan
                 position.coords.latitude,
                 position.coords.longitude
@@ -97,6 +97,11 @@ define([
                 color: 'hotpink'
             });
             // drawLine(Pyoratiet.features);
+        },
+
+        render: function() {
+            this.$el.html('<div id="map"></div>');
+            return this;
         }
     });
 
