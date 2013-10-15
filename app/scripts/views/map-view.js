@@ -2,6 +2,9 @@
 define([
     'backbone',
     'leaflet',
+    'views/selection-view',
+    'models/selection',
+    'collections/selection-collection',
     'data/koirapuistot',
     'data/luontopolkurastit',
     'data/talviliukumaet',
@@ -9,7 +12,7 @@ define([
     'data/kentat',
     'data/luontopolkureitit',
     'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
-], function(Backbone, L, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat, Luontopolkureitit) {
+], function(Backbone, L, SelectionView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat, Luontopolkureitit) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -104,6 +107,15 @@ define([
 
         render: function() {
             this.$el.html('<div id="map"></div>');
+            var selectionCollection = new SelectionCollection([
+                { name: 'Luontopolkurastit' },
+                { name: 'Luontopolkureitit' },
+                { name: 'Koirapuistot', active: true },
+                { name: 'Talviliukumäet' },
+                { name: 'Peli- ja palloilukentät' }
+            ]);
+
+            this.$el.append(new SelectionView({ collection: selectionCollection }).render().el);
             return this;
         }
     });
