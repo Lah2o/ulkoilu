@@ -45,9 +45,13 @@ module.exports = function (grunt) {
                 files: [
                     '<%= yeoman.app %>/*.html',
                     '.tmp/styles/{,*/}*.css',
-                    '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+                    '{.tmp,<%= yeoman.app %>}/scripts/**/*',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
+            },
+            handlebars: {
+                files: ['<%= yeoman.app %>/scripts/template/*.hbs'],
+                tasks: ['handlebars']
             }
         },
         connect: {
@@ -191,8 +195,10 @@ module.exports = function (grunt) {
                     // http://requirejs.org/docs/errors.html#sourcemapcomments
                     preserveLicenseComments: false,
                     useStrict: true,
-                    wrap: true
                     //uglify2: {} // https://github.com/mishoo/UglifyJS2
+                    paths: {
+                        'template': '<%= yeoman.app %>/scripts/template'
+                    }
                 }
             }
         },
@@ -341,6 +347,17 @@ module.exports = function (grunt) {
             all: {
                 rjsConfig: '<%= yeoman.app %>/scripts/main.js'
             }
+        },
+        handlebars: {
+            compile: {
+                options: {
+                    namespace: 'JST',
+                    amd: true
+                }
+            },
+            files: {
+                '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/template/**/*.hbs']
+            }
         }
     });
 
@@ -368,6 +385,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
+        'handlebars',
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
@@ -375,9 +393,9 @@ module.exports = function (grunt) {
         'concat',
         'cssmin',
         'uglify',
-        'modernizr',
+        // 'modernizr',
         'copy:dist',
-        'rev',
+        // 'rev',
         'usemin'
     ]);
 
