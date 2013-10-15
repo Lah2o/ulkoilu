@@ -12,14 +12,21 @@ define([
 		template: Template,
 
         initialize: function() {
-            this.navItems = [
-                { active: 'active', route: '', title: 'Etusivu'},
-                { active: '', route: 'haaste', title: 'Haastesivu'}
-            ];
+            Backbone.history.on('route', this.routeChanged, this);
+            this.collection.on('change', this.render, this);
+        },
+
+        routeChanged: function(router, routeFunction, params) {
+            this.collection.each(function(model) {
+                model.set('active', '');
+            });
+
+            var routeName = params[0] || '';
+            this.collection.findWhere({route: routeName}).set('active', 'active');
         },
 
 		render: function() {
-			this.el.innerHTML = this.template({navItems: this.navItems});
+			this.el.innerHTML = this.template({navItems: this.collection.toJSON()});
 			return this;
 		}
 	});

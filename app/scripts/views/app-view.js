@@ -1,8 +1,10 @@
 /*global define*/
 define([
 	'backbone',
+    'collections/navigation-collection',
+    'models/navigation-item',
 	'views/navigation-view',
-], function(Backbone, NavigationView) {
+], function(Backbone, NavCollection, NavModel, NavigationView) {
 
 	'use strict';
 
@@ -12,11 +14,16 @@ define([
 
 		initialize: function() {
 			Backbone.history.start();
+            this.navItems = new NavCollection([
+                { route: '', title: 'Kartta' },
+                { route: 'haaste', title: 'Haastesivu' }
+            ]);
+            this.navItems.findWhere({route: Backbone.history.fragment}).set('active', 'active');
 		},
 
 		render: function() {
 			this.$el.prepend(
-				new NavigationView().render().el
+				new NavigationView({collection: this.navItems}).render().el
 			);
 			return this;
 		}
