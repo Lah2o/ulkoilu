@@ -6,4 +6,11 @@ define([
 
     'use strict';
     
+       var HaasteView = Backbone.View.extend({
+
+        template: Template,
+        
+       })
+       
+       return KuvaView;
     }
