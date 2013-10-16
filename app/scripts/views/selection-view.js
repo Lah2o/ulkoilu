@@ -14,8 +14,8 @@ define([
             return this;
         },
 
-        renderItem: function(item) {
-            this.$el.append(new SelectionItemView({ model: item }).render().el);
+        renderItem: function(item, iterator) {
+            this.$el.append(new SelectionItemView({ model: item }).render(iterator + 1).el);
         }
     });
 

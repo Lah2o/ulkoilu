@@ -1,4 +1,7 @@
+/*global define*/
 define(['backbone'], function(Backbone) {
+
+    'use strict';
 
     var ItemView = Backbone.View.extend({
 
@@ -8,15 +11,15 @@ define(['backbone'], function(Backbone) {
             'click .show-feature': 'activeStatusChanged'
         },
 
-        activeStatusChanged: function(event) {
+        activeStatusChanged: function() {
             this.model.set('active', !this.model.get('active'));
         },
 
-        render: function() {
+        render: function(count) {
             var checked = this.model.get('active') === true ? 'checked' : '';
             this.$el.html(
-                '<input type="checkbox" class="show-feature" ' + checked + '>' +
-                this.model.get('name')
+                '<input id="item-' + count + '" type="checkbox" class="show-feature" ' + checked + '>' +
+                '<label for="item-' + count + '">' + this.model.get('name') + '</label>'
             );
             return this;
         }

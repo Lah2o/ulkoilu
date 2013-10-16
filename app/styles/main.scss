@@ -37,6 +37,16 @@ html, body {
     width: 15%;
     top: 10px;
     right: 10px;
+    list-style: none;
+
+    input[type="checkbox"] {
+        margin: 0;
+        margin-right: 0.2em;
+    }
+
+    label {
+        display: inline;
+    }
 }
 
 .instagram-photo {
