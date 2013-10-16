@@ -19,7 +19,7 @@ define(['jquery', 'underscore'], function($, _) {
 
 	var Instagram = {
 		Config: {
-			clientID: '4895197dfce340cb9004101ce6ae9215',
+			clientID: '9a8939f7e86e461abf6c0de1742642e6',
 			apiHost: 'https://api.instagram.com'
 		}
 	};
