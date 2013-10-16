@@ -14,7 +14,7 @@ define([
 
         Instagram: {
             Config: {
-                clientID: '855564953b9b42548b43d3946af5add3',
+                clientID: '9a8939f7e86e461abf6c0de1742642e6',
                 apiHost: 'https://api.instagram.com'
             }
         },
@@ -46,7 +46,7 @@ define([
         },
 
         render: function() {
-            this.search('cats');
+            this.search('xplorepirkanmaa');
             this.el.innerHTML = this.template();
             return this;
         }
