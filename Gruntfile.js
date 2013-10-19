@@ -110,14 +110,6 @@ module.exports = function (grunt) {
                 'test/spec/{,*/}*.js'
             ]
         },
-        mocha: {
-            all: {
-                options: {
-                    run: true,
-                    urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
-                }
-            }
-        },
         coffee: {
             dist: {
                 files: [{
@@ -384,8 +376,7 @@ module.exports = function (grunt) {
         'clean:server',
         'concurrent:test',
         'autoprefixer',
-        'connect:test',
-        'mocha'
+        'connect:test'
     ]);
 
     grunt.registerTask('build', [
