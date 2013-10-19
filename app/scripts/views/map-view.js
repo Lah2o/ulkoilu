@@ -42,27 +42,28 @@ define([
                 // Lisätään polygoni karttaan
                 // Lisätään polygoneihin popup, joka esittää alueen nimen
                 var text = dataset[i].properties.ALUE_NIMI;
-                L.polygon(coordinates, options)
-                    .bindPopup(text)
-                    .addTo(this.map);
+                polygons.push(L.polygon(coordinates, options).bindPopup(text));
             }
+            return L.layerGroup(polygons);
         },
 
         drawPoints: function(dataset, ikoni) {
+            var markers = [];
             for (var i = dataset.length - 1; i >= 0; i--) {
                 var text = dataset[i].properties.ALUE_NIMI;
 
-                L.marker([
+                var marker = L.marker([
                     dataset[i].geometry.coordinates[1],
                     dataset[i].geometry.coordinates[0]
-                ], {icon: L.AwesomeMarkers.icon(ikoni) })
-                    .bindPopup(text)
-                    .addTo(this.map);
+                ], {icon: L.AwesomeMarkers.icon(ikoni) }).bindPopup(text);
+
+                markers.push(marker);
             }
+            return L.layerGroup(markers);
         },
 
         drawLine: function(dataset) {
-            // console.log(dataset);
+            var lines = [];
             for (var i = dataset.length - 1; i >= 0; i--) {
 
                 var line = [];
@@ -73,8 +74,10 @@ define([
                     ));
                 }
                 // Viivan koordinaatit ovat oikein päin
-                L.polyline(line).addTo(this.map);
+                lines.push(L.polyline(line));
             }
+            console.log(L.layerGroup(lines));
+            return L.layerGroup(lines);
         },
 
         renderMap: function() {
@@ -95,27 +98,22 @@ define([
                 position.coords.longitude
             ], {icon: L.AwesomeMarkers.icon({icon: 'icon-user', color: 'red', spin:true}) }).addTo(this.map);
 
-            this.drawPolygons(Koirapuistot.features);
-            this.drawPoints(Luontopolkurastit.features, {icon: 'icon-compass', color: 'green', spin:false});
-            this.drawPoints(Talviliukumaet.features, {icon: 'icon-asterisk', color: 'blue', spin:false});
-            this.drawPolygons(Kentat.features, {
-                color: 'hotpink'
-            });
-            this.drawLine(Luontopolkureitit.features);
+
             // drawLine(Pyoratiet.features);
         },
 
         render: function() {
             this.$el.html('<div id="map"></div>');
             var selectionCollection = new SelectionCollection([
-                { name: 'Luontopolkurastit' },
-                { name: 'Luontopolkureitit' },
-                { name: 'Koirapuistot', active: true },
-                { name: 'Talviliukumäet' },
-                { name: 'Peli- ja palloilukentät' }
+                { name: 'Luontopolkurastit'       , layer: this.luontopolkurastit },
+                { name: 'Luontopolkureitit'       , layer: this.luontopolkureitit },
+                { name: 'Koirapuistot'            , layer: this.koirapuistot      },
+                { name: 'Talviliukumäet'          , layer: this.talviliukumaet    },
+                { name: 'Peli- ja palloilukentät' , layer: this.pelikentat        }
             ]);
 
             this.$el.append(new SelectionView({ collection: selectionCollection }).render().el);
+
             return this;
         }
     });
