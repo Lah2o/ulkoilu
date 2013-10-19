@@ -86,7 +86,6 @@ define([
                 // Viivan koordinaatit ovat oikein päin
                 lines.push(L.polyline(line));
             }
-            console.log(L.layerGroup(lines));
             return L.layerGroup(lines);
         },
 
