@@ -8,9 +8,14 @@ html, body {
     height: 100%;
 }
 
+.navbar-fixed-top {
+  position: relative;
+  z-index: 20000;
+}
+
 #page {
     position: absolute;
-    top: 40px;
+    top: 51px;
     bottom: 0;
     left: 0;
     right: 0;
