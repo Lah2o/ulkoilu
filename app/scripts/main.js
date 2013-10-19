@@ -94,9 +94,16 @@ require(['backbone', 'router', 'views/app-view'], function (Backbone, MainRouter
         new AppView().render();
     };
 
+    var locationError = function() {
+        window.App.userLocation = {coords: {latitude: 61.49811, longitude: 23.760889}};
+        new AppView().render();
+    };
+
     window.App = {
         Vent: _.extend({}, Backbone.Events),
         Router: new MainRouter(),
     };
-    navigator.geolocation.getCurrentPosition(start);
+
+    // getCurrentPosition(funktioJosOnnistui, funktioJosVirhe);
+    navigator.geolocation.getCurrentPosition(start, locationError);
 });
