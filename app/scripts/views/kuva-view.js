@@ -22,27 +22,29 @@ define([
             {
                 navigator.geolocation.getCurrentPosition(showPosition);
             }
-            else{x.innerHTML="Geolocation is not supported by this browser.";}
+            else {
+                $('#answer').append('<div class="alert alert-info">Selaimesi ei tue paikannusta!'.render().el);
+                }
         
             var lat1 = position.coords.latitude; 
             var lon1 = position.coords.longitude; 
-            var lat2 =
-            var lon2 = 
+            var lat2 = model.get('latitude');
+            var lon2 = model.get('longitude');
             
             var R = 6371; // km
             var x = (lon2-lon1) * Math.cos((lat1+lat2)/2);
             var y = (lat2-lat1);
             var d = Math.sqrt(x*x + y*y) * R;
                
-           if (d <== 0.2) {
-           // Oikein
-               }
-               else if (d <== 0.5) {
-           // Lähellä
-               }
-               else {
-        //Väärin
-               }
+            if (d <== 0.2) {
+                $('#answer').append('<div class="alert alert-success">Oikein! 1 piste.</div>'.render().el);
+                }
+            else if (d <== 0.5) {
+                $('#answer').append('<div class="alert alert-warning">Läheltä liippaa! Etäisyys on alle 500 metriä kuvasta.</div>'.render().el);
+                }
+            else {
+                $('#answer').append('<div class="alert alert-danger">Väärä sijainti!</div>'.render().el);
+                }
            }
         
        })
