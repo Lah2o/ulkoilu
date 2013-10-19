@@ -13,6 +13,7 @@ define(['backbone'], function(Backbone) {
 
         activeStatusChanged: function() {
             this.model.set('active', !this.model.get('active'));
+            window.App.Vent.trigger( 'filterChanged', this.model );
         },
 
         render: function(count) {
