@@ -1,5 +1,5 @@
 /*global define*/
-define(['backbone', 'views/map-view', 'views/haaste-view', 'views/kuva-view'], function(Backbone, MapView, HaasteView, KuvaView) {
+define(['backbone', 'views/map-view', 'views/haaste-view', 'views/kuva-view', 'models/photo'], function(Backbone, MapView, HaasteView, KuvaView, photo) {
 
     'use strict';
 
@@ -7,7 +7,8 @@ define(['backbone', 'views/map-view', 'views/haaste-view', 'views/kuva-view'], f
 
         routes: {
             '': 'showPage',
-            ':page': 'showPage'
+            ':page': 'showPage',
+            'model:/id': 'photoDetails'
         },
 
         showPage: function(page) {
@@ -31,7 +32,13 @@ define(['backbone', 'views/map-view', 'views/haaste-view', 'views/kuva-view'], f
                 break;
             }
         }
-
+        
+        photoDetails: function(id) {
+            this.model = this.photos-collection.get(id);
+            this.kuvaView = new kuvaView({model:this.model});
+            $('#page').html(this.kuvaView.render().el);   
+        }
+}
     });
 
     return MainRouter;
