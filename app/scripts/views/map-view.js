@@ -24,11 +24,21 @@ define([
         },
 
         initialize: function() {
-            console.log( 'init mapview' );
+            window.App.Vent.on('filterChanged', this.filterChanged, this);
+            this.luontopolkurastit = this.drawPoints  (Luontopolkurastit.features, {icon: 'icon-compass', color: 'green', spin:false});
+            this.talviliukumaet    = this.drawPoints  (Talviliukumaet.features, {icon: 'icon-asterisk', color: 'blue', spin:false});
+            this.luontopolkureitit = this.drawLine    (Luontopolkureitit.features);
+            this.koirapuistot      = this.drawPolygons(Koirapuistot.features);
+            this.pelikentat        = this.drawPolygons(Kentat.features, {color: 'hotpink'});
+        },
+
+        filterChanged: function(model) {
+            return model.get('active') ? this.map.addLayer(model.get('layer')) : this.map.removeLayer(model.get('layer'));
         },
 
         drawPolygons: function(dataset, options) {
             options = options || {};
+            var polygons = [];
 
             for (var i = dataset.length - 1; i >= 0; i--) {
                 var area = (dataset[i].geometry.coordinates[0]);
