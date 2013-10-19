@@ -95,7 +95,13 @@ require(['backbone', 'router', 'views/app-view'], function (Backbone, MainRouter
     };
 
     var locationError = function() {
-        window.App.userLocation = {coords: {latitude: 61.49811, longitude: 23.760889}};
+        window.App.userLocation = {
+            coords: {
+                latitude: 61.49811,
+                longitude: 23.760889
+            },
+            usingDefaultLocation: true
+        };
         new AppView().render();
     };
 

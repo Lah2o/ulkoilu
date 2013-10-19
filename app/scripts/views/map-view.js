@@ -102,10 +102,12 @@ define([
                 maxZoom: 18
             }).addTo(this.map);
 
-            var marker = L.marker([
-                position.coords.latitude,
-                position.coords.longitude
-            ], {icon: L.AwesomeMarkers.icon({icon: 'icon-user', color: 'red', spin:true}) }).addTo(this.map);
+            if( ! position.usingDefaultLocation ) {
+                L.marker([
+                    position.coords.latitude,
+                    position.coords.longitude
+                ], {icon: L.AwesomeMarkers.icon({icon: 'icon-user', color: 'red', spin:true}) }).addTo(this.map);
+            }
 
 
             // drawLine(Pyoratiet.features);
