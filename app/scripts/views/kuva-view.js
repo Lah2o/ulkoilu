@@ -4,24 +4,31 @@ define([
     'hbs!tmpl/kuva'
 ], function(Backbone, Template) {
 
-    'use strict';
-    
-       var HaasteView = Backbone.View.extend({
+        'use strict';
+        var HaasteView = Backbone.View.extend({
 
-        template: Template,
-        
-       })
+            template: Template,
+        })
        
-   $('#photo-single').append(new PhotoView(this.photo).render().el);
+        $('#photo-single').append(new PhotoView(this.model).render().el);
            
-           events: {
+        events: {
                'click .btn btn-default': 'checkLocation',
-           }
+        }
            
-           checkLocation function(this.photo) {
-            //hankitaan lokaatio
-            // etaisyys = sqrt(longdiff^2+latidiff^2)
-           //vääristymää kohti napoja, mutta pienillä luvuilla marginaalista. Verrattaen kevyt kuin tarkemmat laskentatavat
+        checkLocation function(this.model) {
+               
+            if (navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+            else{x.innerHTML="Geolocation is not supported by this browser.";}
+        
+            var lat1 = position.coords.latitude; 
+            var lon1 = position.coords.longitude; 
+            var lat2 =
+            var lon2 = 
+            
             var R = 6371; // km
             var x = (lon2-lon1) * Math.cos((lat1+lat2)/2);
             var y = (lat2-lat1);
