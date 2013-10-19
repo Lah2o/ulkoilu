@@ -59,8 +59,8 @@ define([
                 // Lisätään polygoni karttaan
                 // Lisätään polygoneihin popup, joka esittää alueen nimen
                 var text = dataset[i].properties.ALUE_NIMI;
-                layerGroup.addLayer(L.polygon(coordinates, options).bindPopup(text));
-                layerGroup.addLayer(marker);
+                layerGroup.addLayer(L.polygon(coordinates, options));
+                layerGroup.addLayer(marker.bindPopup(text));
             }
             // group.addLayer(markers);
             return layerGroup;
