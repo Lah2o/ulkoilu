@@ -39,22 +39,31 @@ define([
         drawPolygons: function(dataset, options) {
             options = options || {};
             var polygons = [];
+            var markers = [];
+            var layerGroup = new L.LayerGroup();
 
             for (var i = dataset.length - 1; i >= 0; i--) {
+                var marker;
                 var area = (dataset[i].geometry.coordinates[0]);
                 var coordinates = [];
 
                 for (var j = area.length - 1; j >= 0; j--) {
                     coordinates.push([area[j][1], area[j][0]]);
                 }
+                marker = L.marker([
+                    area[0][1],
+                    area[0][0]
+                ]);
                 // Nyt meillä on yhden alueen koordinaatit oikein päin
                 // muuttujassa coordinates
                 // Lisätään polygoni karttaan
                 // Lisätään polygoneihin popup, joka esittää alueen nimen
                 var text = dataset[i].properties.ALUE_NIMI;
-                polygons.push(L.polygon(coordinates, options).bindPopup(text));
+                layerGroup.addLayer(L.polygon(coordinates, options).bindPopup(text));
+                layerGroup.addLayer(marker);
             }
-            return L.layerGroup(polygons);
+            // group.addLayer(markers);
+            return layerGroup;
         },
 
         drawPoints: function(dataset, ikoni) {
