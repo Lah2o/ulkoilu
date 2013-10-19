@@ -107,8 +107,9 @@ require(['backbone', 'router', 'views/app-view'], function (Backbone, MainRouter
 
     window.App = {
         Vent: _.extend({}, Backbone.Events),
-        Router: new MainRouter(),
     };
+
+    window.App.Router = new MainRouter(),
 
     // getCurrentPosition(funktioJosOnnistui, funktioJosVirhe);
     navigator.geolocation.getCurrentPosition(start, locationError);
