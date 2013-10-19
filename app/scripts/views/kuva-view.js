@@ -28,8 +28,8 @@ define([
         
             var lat1 = position.coords.latitude; 
             var lon1 = position.coords.longitude; 
-            var lat2 = model.get('latitude');
-            var lon2 = model.get('longitude');
+            var lat2 = model.get('position').latitude;
+            var lon2 = model.get('position').longitude;
             
             var R = 6371; // km
             var x = (lon2-lon1) * Math.cos((lat1+lat2)/2);
