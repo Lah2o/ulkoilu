@@ -7,10 +7,24 @@ define([
         'use strict';
         var KuvaView = Backbone.View.extend({
 
+            id: 'fullscreen',
+            className: 'fullscreen',
+
             template: Template,
 
             events: {
-               'click .btn.btn-default': 'checkLocation',
+               'click #vastaa': 'checkLocation',
+               'click .shroud': 'leavingView',
+               'click .photo-single': 'leavingView'
+            },
+
+            initialize: function() {
+
+            },
+
+            leavingView: function(route, params) {
+                this.remove();
+                window.App.Router.navigate('//haaste');
             },
 
             render: function() {
@@ -48,13 +62,13 @@ define([
                 var d = Math.sqrt(x*x + y*y) * R;
 
                 if (d <= 0.2) {
-                    this.$el.append('<div class="alert alert-success">Oikein! 1 piste.</div>');
+                    this.$('#answer').append('<div class="alert alert-success">Oikein! 1 piste.</div>');
                     }
                 else if (d <= 0.5) {
-                    this.$el.append('<div class="alert alert-warning">Läheltä liippaa! Etäisyys on alle 500 metriä kuvasta.</div>');
+                    this.$('#answer').append('<div class="alert alert-warning">Läheltä liippaa! Etäisyys on alle 500 metriä kuvasta.</div>');
                     }
                 else {
-                    this.$el.append('<div class="alert alert-danger">Väärä sijainti!</div>');
+                    this.$('#answer').append('<div class="alert alert-danger">Väärä sijainti!</div>');
                 }
            }
 

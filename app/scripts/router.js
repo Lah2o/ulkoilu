@@ -45,7 +45,6 @@ define([
                     this.kuvaView = new KuvaView({model: this.photo});
                     $('#page').html(this.kuvaView.render().el);
                 },this);
-
             }
             else {
                 this.photo = this.photosCollection.findWhere({id: photoId});
