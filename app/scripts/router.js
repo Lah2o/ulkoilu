@@ -3,9 +3,9 @@ define([
     'backbone',
     'views/map-view',
     'views/haaste-view',
-    'views/kuva-view',
-    'models/photo'
-], function(Backbone, MapView, HaasteView, KuvaView, photo) {
+    'views/single-photo-view',
+    'collections/photos-collection'
+], function(Backbone, MapView, HaasteView, KuvaView, PhotosCollection) {
 
     'use strict';
 
@@ -13,11 +13,8 @@ define([
 
         routes: {
             '': 'showPage',
-            ':page': 'showPage'
-        },
-
-        initialize: function() {
-            window.App.Vent.on('showSinglePhoto', this.photoDetails, this);
+            ':page': 'showPage',
+            'photos/:id': 'photoDetails'
         },
 
         showPage: function(page) {
@@ -29,22 +26,33 @@ define([
                 this.mapView.renderMap();
                 break;
             case 'haaste':
-                this.haasteView = this.haasteView || new HaasteView();
+                this.photosCollection = this.photosCollection || new PhotosCollection();
+                this.haasteView = this.haasteView || new HaasteView({ collection: this.photosCollection });
+
                 $('#page').html(this.haasteView.render().el);
                 break;
-            case 'kuva':
-                this.kuvaView = this.kuvaView || new kuvaView();
-                $('#page').html(this.kuvaView.render().el);
-                break;
             default:
-                console.log('Tuntematon sivu ' + page);
+                console.error('Tuntematon sivu ' + page);
                 break;
             }
         },
 
-        photoDetails: function(options) {
-            this.kuvaView = new KuvaView({model: options.model});
-            $('#page').html(this.kuvaView.render().el);
+        photoDetails: function(photoId) {
+            if( ! this.photosCollection ) {
+                this.photosCollection = new PhotosCollection();
+                this.photosCollection.once('sync', function() {
+                    this.photo = this.photosCollection.findWhere({id: photoId});
+                    this.kuvaView = new KuvaView({model: this.photo});
+                    $('#page').html(this.kuvaView.render().el);
+                },this);
+            }
+            else {
+                this.photo = this.photosCollection.findWhere({id: photoId});
+                this.kuvaView = new KuvaView({model: this.photo});
+                $('#page').html(this.kuvaView.render().el);
+            }
+
+
         }
     });
 

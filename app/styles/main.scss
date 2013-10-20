@@ -1,24 +1,29 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
+@import 'compass';
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'sass-bootstrap/lib/responsive';
 @import 'leaflet';
+@import 'fullscreen';
 
 html, body {
     height: 100%;
-}
-
-.navbar-fixed-top {
-  position: relative;
-  z-index: 20000;
+    @media screen and (max-width: 979px) {
+      padding: 0;
+    }
 }
 
 #page {
-    position: absolute;
-    top: 51px;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    padding-top: 41px;
+    height: 100%;
+    @include box-sizing(border-box);
+    @media screen and (max-width: 979px) {
+      padding-top: 0
+    }
+
+    .container {
+      margin-top: 20px;
+    }
 }
 
 #map-view {

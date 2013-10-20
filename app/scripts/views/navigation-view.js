@@ -22,7 +22,8 @@ define([
             });
 
             var routeName = params[0] || '';
-            this.collection.findWhere({route: routeName}).set('active', 'active');
+            var activeRoute = this.collection.findWhere({route: routeName});
+            if(activeRoute) activeRoute.set('active', 'active');
         },
 
 		render: function() {

@@ -1,19 +1,16 @@
-<div id='photo-single'>
-  <img src="{{images.standard_resolution.url}}">
-</div>
-<div class="btn-group" id='buttons'>
-  <button type="button" class="btn btn-default">Vastaa</button>
-
-  <div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      JAA
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">FB</a></li>
-      <li><a href="#">TWITTER</a></li>
-    </ul>
+<div class="shroud"></div>
+<div class="single-photo-content">
+    <img class="photo-single" src="{{images.standard_resolution.url}}">
+  <div class="btn-group" id='buttons'>
+    <button type="button" class="btn btn-inverse" id="vastaa">Vastaa</button>
+      <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+        JAA
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">FB</a></li>
+        <li><a href="#">TWITTER</a></li>
+      </ul>
   </div>
-</div>
-<div id='answer'>
+  <div id='answer'></div>
 </div>

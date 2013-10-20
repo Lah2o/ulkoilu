@@ -7,14 +7,27 @@ define([
         'use strict';
         var KuvaView = Backbone.View.extend({
 
+            id: 'fullscreen',
+            className: 'fullscreen',
+
             template: Template,
 
             events: {
-                   'click .btn.btn-default': 'checkLocation',
+               'click #vastaa': 'checkLocation',
+               'click .shroud': 'leavingView',
+               'click .photo-single': 'leavingView'
+            },
+
+            initialize: function() {
+
+            },
+
+            leavingView: function(route, params) {
+                this.remove();
+                window.App.Router.navigate('//haaste');
             },
 
             render: function() {
-                console.log(this.model);
                 this.$el.append(this.template(this.model.toJSON()));
                 return this;
             },
@@ -25,18 +38,15 @@ define([
             },
 
             checkLocation: function(model) {
-
-                if (navigator.geolocation)
-                {
+                if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(this.updatePosition.bind(this));
                 }
                 else {
                     this.$el.append('<div class="alert alert-info">Selaimesi ei tue paikannusta!');
-                    }
+                }
             },
 
             checkCorrectAnswer: function(userLocation) {
-
                 Number.prototype.toRad = function() {
                     return this * Math.PI / 180;
                 };
@@ -51,20 +61,14 @@ define([
                 var y = ( lat2 - lat1 );
                 var d = Math.sqrt(x*x + y*y) * R;
 
-                console.log({
-                    kuvanSijainti: [lat2, lon2],
-                    kayttajanSijainti: [lat1, lon1],
-                    etaisyys: d
-                });
-
                 if (d <= 0.2) {
-                    this.$el.append('<div class="alert alert-success">Oikein! 1 piste.</div>');
+                    this.$('#answer').append('<div class="alert alert-success">Oikein! 1 piste.</div>');
                     }
                 else if (d <= 0.5) {
-                    this.$el.append('<div class="alert alert-warning">Läheltä liippaa! Etäisyys on alle 500 metriä kuvasta.</div>');
+                    this.$('#answer').append('<div class="alert alert-warning">Läheltä liippaa! Etäisyys on alle 500 metriä kuvasta.</div>');
                     }
                 else {
-                    this.$el.append('<div class="alert alert-danger">Väärä sijainti!</div>');
+                    this.$('#answer').append('<div class="alert alert-danger">Väärä sijainti!</div>');
                 }
            }
 
