@@ -3,7 +3,7 @@ define([
     'backbone',
     'views/map-view',
     'views/haaste-view',
-    'views/kuva-view',
+    'views/single-photo-view',
     'models/photo'
 ], function(Backbone, MapView, HaasteView, KuvaView, photo) {
 
