@@ -4,8 +4,8 @@ define([
     'views/map-view',
     'views/haaste-view',
     'views/single-photo-view',
-    'models/photo'
-], function(Backbone, MapView, HaasteView, KuvaView, photo) {
+    'collections/photos-collection'
+], function(Backbone, MapView, HaasteView, KuvaView, PhotosCollection) {
 
     'use strict';
 
@@ -29,8 +29,10 @@ define([
                 this.mapView.renderMap();
                 break;
             case 'haaste':
-                this.haasteView = this.haasteView || new HaasteView();
-                $('#page').html(this.haasteView.render().el);
+                this.haasteView = this.haasteView || new HaasteView({ collection: new PhotosCollection() });
+                this.haasteView.collection.on('sync', function() {
+                    $('#page').html(this.haasteView.render().el);
+                }, this);
                 break;
             case 'kuva':
                 this.kuvaView = this.kuvaView || new kuvaView();
