@@ -10,11 +10,10 @@ define([
             template: Template,
 
             events: {
-                   'click .btn.btn-default': 'checkLocation',
+               'click .btn.btn-default': 'checkLocation',
             },
 
             render: function() {
-                console.log(this.model);
                 this.$el.append(this.template(this.model.toJSON()));
                 return this;
             },
@@ -25,18 +24,15 @@ define([
             },
 
             checkLocation: function(model) {
-
-                if (navigator.geolocation)
-                {
+                if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(this.updatePosition.bind(this));
                 }
                 else {
                     this.$el.append('<div class="alert alert-info">Selaimesi ei tue paikannusta!');
-                    }
+                }
             },
 
             checkCorrectAnswer: function(userLocation) {
-
                 Number.prototype.toRad = function() {
                     return this * Math.PI / 180;
                 };
@@ -50,12 +46,6 @@ define([
                 var x = ( lon2 - lon1 ) * Math.cos((lat1 + lat2 )/2);
                 var y = ( lat2 - lat1 );
                 var d = Math.sqrt(x*x + y*y) * R;
-
-                console.log({
-                    kuvanSijainti: [lat2, lon2],
-                    kayttajanSijainti: [lat1, lon1],
-                    etaisyys: d
-                });
 
                 if (d <= 0.2) {
                     this.$el.append('<div class="alert alert-success">Oikein! 1 piste.</div>');

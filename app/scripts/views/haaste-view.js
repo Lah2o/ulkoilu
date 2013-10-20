@@ -13,7 +13,7 @@ define([
         template: Template,
 
         initialize: function() {
-            this.collection.fetch();
+            this.collection.on('sync', this.render, this);
         },
 
         render: function() {

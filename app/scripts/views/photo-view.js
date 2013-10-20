@@ -11,16 +11,6 @@ define([
 
         template: Template,
 
-        events: {
-            'click .instagram-photo': 'showSinglePhoto'
-        },
-
-        showSinglePhoto: function(event) {
-            event.preventDefault();
-            window.App.Vent.trigger('showSinglePhoto', {model: this.model});
-            console.log(this.model);
-        },
-
         render: function() {
             this.el.innerHTML = this.template(this.model.toJSON());
 

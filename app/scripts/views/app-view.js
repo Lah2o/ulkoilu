@@ -18,7 +18,8 @@ define([
                 { route: '', title: 'Kartta' },
                 { route: 'haaste', title: 'Haastesivu' }
             ]);
-            this.navItems.findWhere({route: Backbone.history.fragment}).set('active', 'active');
+            var currentItem = this.navItems.findWhere({route: Backbone.history.fragment});
+            if( currentItem ) currentItem.set('active', 'active');
 		},
 
 		render: function() {

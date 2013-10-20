@@ -11,6 +11,10 @@ define(['backbone', 'models/photo'], function(Backbone, Photo) {
             tag: 'xplorepirkanmaa'
          },
 
+         initialize: function() {
+            this.fetch();
+         },
+
          url: function() {
             return 'https://api.instagram.com/v1/tags/' + this.instagram.tag + '/media/recent?callback=?&client_id=' + this.instagram.clientID;
          },
