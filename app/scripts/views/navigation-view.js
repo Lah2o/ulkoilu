@@ -2,14 +2,35 @@
 define([
     'backbone',
     'hbs!tmpl/navigation',
+    'hbs!tmpl/info-map',
+    'hbs!tmpl/info-haaste',
     'bootstrapCollapse'
-], function(Backbone, Template) {
+], function(Backbone, Template, infoMapTemplate, infoHaasteTemplate) {
 
-	'use strict';
+        'use strict';
 
     var NavigationView = Backbone.View.extend({
-		className: 'navbar navbar-default navbar-fixed-top',
-		template: Template,
+                className: 'navbar navbar-default navbar-fixed-top',
+                template: Template,
+
+               events: {
+                'click #info':'showInfo'
+                },
+
+        showInfo: function() {
+            if (!document.getElementById("info-window")) {
+            	if (this.collection.findWhere({active: 'active'}) === this.collection.findWhere({title: 'Kartta'})) {
+            		this.$el.append(infoMapTemplate);
+            	}
+            	else {
+                	this.$el.append(infoHaasteTemplate);
+            	}
+            }
+            else
+            {
+                this.$('#info-window').remove();
+            }
+        },
 
         initialize: function() {
             Backbone.history.on('route', this.routeChanged, this);
