@@ -25,7 +25,9 @@ define([
         },
 
         renderPhoto: function(photo) {
+            if (photo.get('location') !== null) {
             this.el.appendChild( new PhotoView({ model: photo }).render().el );
+            }
         }
 
     });
