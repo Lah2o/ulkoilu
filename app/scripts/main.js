@@ -34,7 +34,7 @@ require.config({
             deps: ['jquery']
         },
         bootstrapPopover: {
-            deps: ['jquery']
+            deps: ['bootstrapTooltip', 'jquery']
         },
         bootstrapScrollspy: {
             deps: ['jquery']
@@ -52,17 +52,17 @@ require.config({
 
     paths: {
         jquery: '../bower_components/jquery/jquery',
-        bootstrapAffix: '../bower_components/sass-bootstrap/js/affix',
-        bootstrapAlert: '../bower_components/sass-bootstrap/js/alert',
-        bootstrapButton: '../bower_components/sass-bootstrap/js/button',
-        bootstrapCarousel: '../bower_components/sass-bootstrap/js/carousel',
+        bootstrapAffix: '../bower_components/sass-bootstrap/js/bootstrap-affix',
+        bootstrapAlert: '../bower_components/sass-bootstrap/js/bootstrap-alert',
+        bootstrapButton: '../bower_components/sass-bootstrap/js/bootstrap-button',
+        bootstrapCarousel: '../bower_components/sass-bootstrap/js/bootstrap-carousel',
         bootstrapCollapse: '../bower_components/sass-bootstrap/js/bootstrap-collapse',
-        bootstrapDropdown: '../bower_components/sass-bootstrap/js/dropdown',
-        bootstrapPopover: '../bower_components/sass-bootstrap/js/popover',
-        bootstrapScrollspy: '../bower_components/sass-bootstrap/js/scrollspy',
-        bootstrapTab: '../bower_components/sass-bootstrap/js/tab',
-        bootstrapTooltip: '../bower_components/sass-bootstrap/js/tooltip',
-        bootstrapTransition: '../bower_components/sass-bootstrap/js/transition',
+        bootstrapDropdown: '../bower_components/sass-bootstrap/js/bootstrap-dropdown',
+        bootstrapPopover: '../bower_components/sass-bootstrap/js/bootstrap-popover',
+        bootstrapScrollspy: '../bower_components/sass-bootstrap/js/bootstrap-scrollspy',
+        bootstrapTab: '../bower_components/sass-bootstrap/js/bootstrap-tab',
+        bootstrapTooltip: '../bower_components/sass-bootstrap/js/bootstrap-tooltip',
+        bootstrapTransition: '../bower_components/sass-bootstrap/js/bootstrap-transition',
 
         underscore: '../bower_components/underscore/underscore',
         backbone: '../bower_components/backbone/backbone',
