@@ -1,4 +1,4 @@
-/*global define*/
+/*global define,_*/
 define([
     'backbone',
     'collections/photos-collection',
@@ -12,6 +12,7 @@ define([
 
         template: Template,
         className: 'container haaste-container',
+        limit: 12, // Kuinka monta kuvaa näytetään haastesivulla
 
         initialize: function() {
             this.collection.on('sync', this.render, this);
@@ -19,7 +20,7 @@ define([
 
         render: function() {
             this.el.innerHTML = this.template();
-            this.collection.each(this.renderPhoto, this);
+            _.each(this.collection.slice(0, this.limit), this.renderPhoto, this);
             return this;
         },
 
