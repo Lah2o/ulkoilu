@@ -50,6 +50,10 @@ define([
                 Number.prototype.toRad = function() {
                     return this * Math.PI / 180;
                 };
+                
+                if (document.getElementById('answer-window')) {
+                    this.$('#answer-window').remove();                    
+                }
 
                 var lat1 = userLocation.coords.latitude.toRad();
                 var lon1 = userLocation.coords.longitude.toRad();
@@ -62,13 +66,13 @@ define([
                 var d = Math.sqrt(x*x + y*y) * R;
 
                 if (d <= 0.2) {
-                    this.$('#answer').append('<div class="alert alert-success">Oikein! 1 piste.</div>');
+                    this.$('#answer').append('<div class="alert alert-success" id="answer-window">Oikein! 1 piste.</div>');
                     }
                 else if (d <= 0.5) {
-                    this.$('#answer').append('<div class="alert alert-warning">Läheltä liippaa! Etäisyys on alle 500 metriä kuvasta.</div>');
+                    this.$('#answer').append('<div class="alert alert-warning" id="answer-window">Läheltä liippaa! Etäisyys on alle 500 metriä kuvasta.</div>');
                     }
                 else {
-                    this.$('#answer').append('<div class="alert alert-danger">Väärä sijainti!</div>');
+                    this.$('#answer').append('<div class="alert alert-danger" id="answer-window">Väärä sijainti!</div>');
                 }
            }
 
