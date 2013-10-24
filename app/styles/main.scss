@@ -59,8 +59,23 @@ html, body {
     }
 }
 
-.instagram-photo {
-    float: left;
+#popover-container {
+    position: absolute;
+    top: 35px;
+    background: white;
+
+    div {
+        border: 1px solid grey;
+        padding: 5px;
+    }
+}
+
+.haaste-container {
+    text-align: center;
+}
+
+.photo-container {
+    display: inline-block;
 }
 
 /*

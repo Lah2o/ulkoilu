@@ -11,7 +11,7 @@ define([
     var HaasteView = Backbone.View.extend({
 
         template: Template,
-        className: 'container',
+        className: 'container haaste-container',
 
         initialize: function() {
             this.collection.on('sync', this.render, this);

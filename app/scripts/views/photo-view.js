@@ -10,6 +10,7 @@ define([
     var PhotoView = Backbone.View.extend({
 
         template: Template,
+        className: 'photo-container',
 
         render: function() {
             this.el.innerHTML = this.template(this.model.toJSON());
