@@ -30,10 +30,10 @@ define([
             window.App.Vent.on('filterChanged', this.filterChanged, this);
             this.luontopolkurastit = this.drawPoints  (Luontopolkurastit.features, {icon: 'icon-compass', color: 'green', spin:false});
             this.talviliukumaet    = this.drawPoints  (Talviliukumaet.features, {icon: 'icon-asterisk', color: 'blue', spin:false});
-            this.luontopolkureitit = this.drawLine    (Luontopolkureitit.features);
-            this.koirapuistot      = this.drawPolygons(Koirapuistot.features);
-            this.pelikentat        = this.drawPolygons(Kentat.features, {color: 'hotpink'});
-            this.venerannat        = this.drawPolygons(Venerannat.features, {color: 'turquoise' });
+            this.luontopolkureitit = this.drawLine    (Luontopolkureitit.features,{color: 'hotpink'});
+            this.koirapuistot      = this.drawPolygons(Koirapuistot.features, {color: 'hotpink'}, {icon: 'icon-cloud', color: 'purple', spin:false});
+            this.pelikentat        = this.drawPolygons(Kentat.features, {color: 'hotpink'}, {icon: 'icon-play-circle', color: 'orange', spin:false});
+            this.venerannat        = this.drawPolygons(Venerannat.features, {color: 'turquoise' }, {icon: 'icon-tint', color: 'darkblue', spin:false});
             this.rullalautailu     = this.drawPoints  (Rullalautailu.features, {icon: 'icon-repeat', color: 'darkred'});
             this.leikkipaikat      = this.drawPoints  (Leikkipaikat.features, {icon: 'icon-heart', color: 'cadetblue'});
         },
@@ -42,7 +42,7 @@ define([
             return model.get('active') ? this.map.addLayer(model.get('layer')) : this.map.removeLayer(model.get('layer'));
         },
 
-        drawPolygons: function(dataset, options) {
+        drawPolygons: function(dataset, options, ikoni) {
             options = options || {};
             var polygons = [];
             var markers = [];
@@ -62,7 +62,7 @@ define([
                 marker = L.marker([
                     area[0][1],
                     area[0][0]
-                ]);
+                ], {icon: L.AwesomeMarkers.icon(ikoni) }).bindPopup(text);
                 // Nyt meillä on yhden alueen koordinaatit oikein päin
                 // muuttujassa coordinates
                 // Lisätään polygoni karttaan
