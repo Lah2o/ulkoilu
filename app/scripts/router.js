@@ -4,8 +4,10 @@ define([
     'views/map-view',
     'views/haaste-view',
     'views/single-photo-view',
-    'collections/photos-collection'
-], function(Backbone, MapView, HaasteView, KuvaView, PhotosCollection) {
+    'collections/photos-collection',
+    'views/profile-view',
+    'views/registration-view'
+], function(Backbone, MapView, HaasteView, KuvaView, PhotosCollection, ProfileView, RegistrationView) {
 
     'use strict';
 
@@ -14,7 +16,7 @@ define([
         routes: {
             '': 'showPage',
             ':page': 'showPage',
-            'photos/:id': 'photoDetails'
+            'photos/:id': 'photoDetails',
         },
 
         showPage: function(page) {
@@ -30,6 +32,12 @@ define([
                 this.haasteView = this.haasteView || new HaasteView({ collection: this.photosCollection });
 
                 $('#page').html(this.haasteView.render().el);
+                break;
+            case 'profiili':
+                $('#page').html(new ProfileView().render().el);
+                break;
+            case 'rekisteroityminen':
+                $('#page').html(new RegistrationView().render().el);
                 break;
             default:
                 console.error('Tuntematon sivu ' + page);
@@ -53,7 +61,9 @@ define([
             }
 
 
-        }
+        },
+
+
     });
 
     return MainRouter;
