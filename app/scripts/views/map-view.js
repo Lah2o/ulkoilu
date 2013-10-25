@@ -14,8 +14,9 @@ define([
     'data/venerannat',
     'data/rullalautailu',
     'data/leikkipaikat',
+    'data/laavut',
     'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
-], function(Backbone, L, SelectionView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat) {
+], function(Backbone, L, SelectionView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat, Laavut) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -36,6 +37,7 @@ define([
             this.venerannat        = this.drawPolygons(Venerannat.features, {color: 'turquoise' });
             this.rullalautailu     = this.drawPoints  (Rullalautailu.features, {icon: 'icon-repeat', color: 'darkred'});
             this.leikkipaikat      = this.drawPoints  (Leikkipaikat.features, {icon: 'icon-heart', color: 'cadetblue'});
+            this.laavut            = this.drawLaavut  (Laavut);
         },
 
         filterChanged: function(model) {
@@ -137,6 +139,27 @@ define([
             // drawLine(Pyoratiet.features);
         },
 
+        drawLaavut: function(xml) {
+            var markers = [];
+            var view = this;
+
+            $(xml).find('wpt').each(function() {
+                var name = $(this).find('name')[0] ? $(this).find('name')[0].innerHTML : '';
+                var sym  = $(this).find('sym')[0]  ? $(this).find('sym')[0].innerHTML  : '';
+                var desc = $(this).find('desc')[0] ? $(this).find('desc')[0].innerHTML  : '';
+                markers.push(L.marker([
+                    $(this).attr('lat'),
+                    $(this).attr('lon')
+                ]).bindPopup(
+                    '<strong>' + name + '</strong><br>' +
+                    sym + '<br>' +
+                    desc
+                ));
+            });
+
+            return L.layerGroup(markers);
+        },
+
         render: function() {
             this.$el.html('<div id="map"></div>');
             var selectionCollection = new SelectionCollection([
@@ -147,7 +170,8 @@ define([
                 { name: 'Peli- ja palloilukentät' , layer: this.pelikentat        },
                 { name: 'Soutuvenerannat'         , layer: this.venerannat        },
                 { name: 'Rullalautailualueet'     , layer: this.rullalautailu     },
-                { name: 'Leikkipaikat'            , layer: this.leikkipaikat      }
+                { name: 'Leikkipaikat'            , layer: this.leikkipaikat      },
+                { name: 'Laavut'                  , layer: this.laavut            }
             ]);
 
             this.$el.append(new SelectionView({ collection: selectionCollection }).render().el);
