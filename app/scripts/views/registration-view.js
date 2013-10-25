@@ -1,11 +1,17 @@
 /*global define*/
-define(['backbone',], function(Backbone) {
+define([
+    'backbone',
+    'hbs!tmpl/registration'
+],
+    function(Backbone, Template) {
     'use strict';
 
     var RegistrationView = Backbone.View.extend({
 
+        template: Template,
+
         render: function() {
-            this.el.innerHTML='Rekisteröitymissivu!';
+            this.el.innerHTML=this.template();
             console.log(this);
             return this;
         }
