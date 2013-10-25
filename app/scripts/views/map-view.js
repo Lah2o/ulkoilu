@@ -11,8 +11,11 @@ define([
     'data/pyoratiet',
     'data/kentat',
     'data/luontopolkureitit',
+    'data/venerannat',
+    'data/rullalautailu',
+    'data/leikkipaikat',
     'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
-], function(Backbone, L, SelectionView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat, Luontopolkureitit) {
+], function(Backbone, L, SelectionView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -30,6 +33,9 @@ define([
             this.luontopolkureitit = this.drawLine    (Luontopolkureitit.features);
             this.koirapuistot      = this.drawPolygons(Koirapuistot.features);
             this.pelikentat        = this.drawPolygons(Kentat.features, {color: 'hotpink'});
+            this.venerannat        = this.drawPolygons(Venerannat.features, {color: 'turquoise' });
+            this.rullalautailu     = this.drawPoints  (Rullalautailu.features, {icon: 'icon-repeat', color: 'darkred'});
+            this.leikkipaikat      = this.drawPoints  (Leikkipaikat.features, {icon: 'icon-heart', color: 'cadetblue'});
         },
 
         filterChanged: function(model) {
@@ -44,6 +50,9 @@ define([
 
             for (var i = dataset.length - 1; i >= 0; i--) {
                 var marker;
+                if(!dataset[i].geometry) {
+                    continue;
+                }
                 var area = (dataset[i].geometry.coordinates[0]);
                 var coordinates = [];
 
@@ -70,6 +79,9 @@ define([
             var markers = [];
             for (var i = dataset.length - 1; i >= 0; i--) {
                 var text = dataset[i].properties.ALUE_NIMI;
+                if(!dataset[i].geometry) {
+                    continue;
+                }
 
                 var marker = L.marker([
                     dataset[i].geometry.coordinates[1],
@@ -86,6 +98,9 @@ define([
             for (var i = dataset.length - 1; i >= 0; i--) {
 
                 var line = [];
+                if(!dataset[i].geometry) {
+                    continue;
+                }
                 for (var j = dataset[i].geometry.coordinates.length - 1; j >= 0; j--) {
                     line.push(new L.LatLng(
                         dataset[i].geometry.coordinates[j][1],
@@ -129,7 +144,10 @@ define([
                 { name: 'Luontopolkureitit'       , layer: this.luontopolkureitit },
                 { name: 'Koirapuistot'            , layer: this.koirapuistot      },
                 { name: 'Talviliukumäet'          , layer: this.talviliukumaet    },
-                { name: 'Peli- ja palloilukentät' , layer: this.pelikentat        }
+                { name: 'Peli- ja palloilukentät' , layer: this.pelikentat        },
+                { name: 'Soutuvenerannat'         , layer: this.venerannat        },
+                { name: 'Rullalautailualueet'     , layer: this.rullalautailu     },
+                { name: 'Leikkipaikat'            , layer: this.leikkipaikat      }
             ]);
 
             this.$el.append(new SelectionView({ collection: selectionCollection }).render().el);
