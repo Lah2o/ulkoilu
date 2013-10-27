@@ -29,8 +29,7 @@ events: {
 
         render: function() {
             this.el.innerHTML=this.template();
-            console.log(this);
-            console.log(this.options.loc);
+            console.log(this.options.huolto);
             this.showInfo(Koirapuistot.features, 3);
             
             return this;
