@@ -69,7 +69,9 @@ define([
                 // muuttujassa coordinates
                 // Lisätään polygoni karttaan
                 // Lisätään polygoneihin popup, joka esittää alueen nimen
-                var text = dataset[i].properties.ALUE_NIMI;
+                var text =  dataset[i].properties.ALUE_NIMI + '<br>' + '<div class="btn-group" id="buttons">' +
+                            '<button type="button" class="btn btn-success" id="Check-in">Check-in</button>' +
+                            '<a href="#location-info" class="btn btn-info" id="show-info">Info</a></div>';
                 layerGroup.addLayer(L.polygon(coordinates, options));
                 layerGroup.addLayer(marker.bindPopup(text));
             }
@@ -80,7 +82,9 @@ define([
         drawPoints: function(dataset, ikoni) {
             var markers = [];
             for (var i = dataset.length - 1; i >= 0; i--) {
-                var text = dataset[i].properties.ALUE_NIMI;
+                var text =  dataset[i].properties.ALUE_NIMI + '<br>' + '<div class="btn-group" id="buttons">' +
+                            '<button type="button" class="btn btn-success" id="Check-in">Check-in</button>' +
+                            '<a href="#location-info" class="btn btn-info" id="show-info">Info</a></div>';
                 if(!dataset[i].geometry) {
                     continue;
                 }

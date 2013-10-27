@@ -39,6 +39,9 @@ define([
             case 'rekisteroityminen':
                 $('#page').html(new RegistrationView().render().el);
                 break;
+            case 'location-info':
+                $('#page').html(new PaikkaView().render().el);
+                break;
             default:
                 console.error('Tuntematon sivu ' + page);
                 break;
