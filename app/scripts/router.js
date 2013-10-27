@@ -34,7 +34,8 @@ define([
                 $('#page').html(this.haasteView.render().el);
                 break;
             case 'profiili':
-                $('#page').html(new ProfileView().render().el);
+                this.photosCollection = this.photosCollection || new PhotosCollection();
+                $('#page').html(new ProfileView({ collection: this.photosCollection }).render().el);
                 break;
             case 'rekisteroityminen':
                 $('#page').html(new RegistrationView().render().el);

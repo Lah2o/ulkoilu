@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row-fluid">
-        <div class="span8">...
+        <div class="span8">
             <img src="/images/user.svg" class="ugly-user">
             <h1>Käyttäjä</h1>
             <h2>Taso 1: 2 p.</h2>
@@ -13,11 +13,17 @@
                 <p>NEWSFEED: Tänne jotakin juttua sitten</p>
             </div>
         </div>
-        <div class="span4">...
+        <div class="span4 well">
             <div>
                 <h3>Omat haasteet</h3>
-                <ul><li>1.</li>
-                    <li>2.</li>
+                <ul class="own-challenges thumbnails">
+                    {{#each photos}}
+                        <li class="span3">
+                            <a href="/#/photos/{{id}}" class="thumbnail">
+                                <img src="{{images.low_resolution.url}}" class="photo" width="100" height="100">
+                            </a>
+                        </li>
+                    {{/each}}
                 </ul>
             </div>
             <div>
