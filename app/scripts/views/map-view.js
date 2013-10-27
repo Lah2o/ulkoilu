@@ -53,9 +53,15 @@ checkIn: function (event) {
 },
 
 showLocInfo: function(event) {
-    var dataset = $(event.target).data('rajapinta');
-    console.log(dataset);
-     $('#page').html(new PaikkaView({loc:dataset}).render().el);
+    var nimi = $(event.target).data('nimi');
+    var katu = $(event.target).data('katu');
+    var paikka = $(event.target).data('paikka');
+    var kaytto = $(event.target).data('kaytto');
+    var kausi = $(event.target).data('kausi');
+    var erikois = $(event.target).data('erikois');
+    var huolto = $(event.target).data('huolto');
+    console.log(nimi, katu, paikka, kaytto, kausi, erikois, huolto);
+     $('#page').html(new PaikkaView({nimi:nimi, katu:katu, paikka:paikka, kaytto:kaytto, kausi:kausi, erikois:erikois, huolto:huolto}).render().el);
 },
 
         filterChanged: function(model) {
@@ -89,8 +95,12 @@ showLocInfo: function(event) {
                 // Lisätään polygoni karttaan
                 // Lisätään polygoneihin popup, joka esittää alueen nimen
                 var text =  dataset[i].properties.ALUE_NIMI + '<br>' + '<div class="btn-group" id="buttons">' +
-                            '<button type="button" class="btn btn-success" id="check-in" data-rajapinta="' + dataset[i] + '">Check-in</button>' +
-                            '<button type="button" class="btn btn-info" id="show-info" data-rajapinta="' + dataset[i] + '">Info</button></div>';
+                            '<button type="button" class="btn btn-success" id="check-in" data-nimi="' + dataset[i].properties.ALUE_NIMI + '">Check-in</button>' +
+                            '<button type="button" class="btn btn-info" id="show-info" data-nimi="' + dataset[i].properties.ALUE_NIMI 
+                            + '" data-katu="' + dataset[i].properties.ALUE_SIJ + '" data-paikka="'+ dataset[i].properties.KAUPUNGINOSA
+                            + '" data-kausi="'+ dataset[i].properties.KP_KAUSI +'" data-kaytto="'+ dataset[i].properties.TOIMLK
+                            + '" data-erikois="'+ dataset[i].properties.ERITYISKAYTTO + '" data-huolto="'+ dataset[i].properties.KUNNOSSAPITAJA 
+                            + '" ->Info</button></div>';
                 layerGroup.addLayer(L.polygon(coordinates, options));
                 layerGroup.addLayer(marker.bindPopup(text));
             }
