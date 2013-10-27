@@ -80,12 +80,25 @@ html, body {
     max-width: 600px;
     position: relative;
     margin: 40px auto;
-    
+
     p, h1 {
-        color: #FFFFFF;
+        color: #222;
     }
 }
 
+.ugly-user {
+    width: 50px;
+}
+
+.achievement img {
+    width: 40px;
+    height: 35px;
+}
+
+.newsfeed {
+    height: 300px;
+    background-color: olive;
+}
 
 
 /*
@@ -177,18 +190,4 @@ Version: 1.0
 
 .awesome-marker-icon-cadetblue {
   background-position: -324px 0;
-}
-
-.ugly-user {
-    width: 50px;
-}
-
-.achievement img {
-    width: 40px;
-    height: 35px;
-}
-
-.newsfeed {
-    height: 300px;
-    background-color: olive;
 }
