@@ -22,6 +22,7 @@ define([
 
         template: Template,
 
+
 events: {
     'click #return': 'leavingView'
 },
@@ -29,6 +30,7 @@ events: {
         render: function() {
             this.el.innerHTML=this.template();
             console.log(this);
+            console.log(this.options.loc);
             this.showInfo(Koirapuistot.features, 3);
             
             return this;
