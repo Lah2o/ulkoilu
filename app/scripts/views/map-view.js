@@ -27,13 +27,13 @@ define([
         config: {
             appKey: '32fb713c6d034b4a9d8df1d4f0768b5b'
         },
-        
+
 events : {
-    
+
     'click #check-in': 'checkIn',
     'click #show-info': 'showLocInfo'
 },
- 
+
         initialize: function() {
             window.App.Vent.on('filterChanged', this.filterChanged, this);
             this.luontopolkurastit = this.drawPoints  (Luontopolkurastit.features, {icon: 'icon-compass', color: 'green', spin:false});
@@ -49,7 +49,7 @@ events : {
 
 checkIn: function (event) {
     var pancakes = $(event.target).data('rajapinta');
- console.log(pancakes);   
+ console.log(pancakes);
 },
 
 showLocInfo: function(event) {
@@ -67,7 +67,7 @@ showLocInfo: function(event) {
         filterChanged: function(model) {
             return model.get('active') ? this.map.addLayer(model.get('layer')) : this.map.removeLayer(model.get('layer'));
         },
-        
+
 
         drawPolygons: function(dataset, options, ikoni) {
             options = options || {};
@@ -96,10 +96,10 @@ showLocInfo: function(event) {
                 // Lisätään polygoneihin popup, joka esittää alueen nimen
                 var text =  dataset[i].properties.ALUE_NIMI + '<br>' + '<div class="btn-group" id="buttons">' +
                             '<button type="button" class="btn btn-success" id="check-in" data-nimi="' + dataset[i].properties.ALUE_NIMI + '">Check-in</button>' +
-                            '<button type="button" class="btn btn-info" id="show-info" data-nimi="' + dataset[i].properties.ALUE_NIMI 
+                            '<button type="button" class="btn btn-info" id="show-info" data-nimi="' + dataset[i].properties.ALUE_NIMI
                             + '" data-katu="' + dataset[i].properties.ALUE_SIJ + '" data-paikka="'+ dataset[i].properties.KAUPUNGINOSA
                             + '" data-kausi="'+ dataset[i].properties.KP_KAUSI +'" data-kaytto="'+ dataset[i].properties.TOIMLK
-                            + '" data-erikois="'+ dataset[i].properties.ERITYISKAYTTO + '" data-huolto="'+ dataset[i].properties.KUNNOSSAPITAJA 
+                            + '" data-erikois="'+ dataset[i].properties.ERITYISKAYTTO + '" data-huolto="'+ dataset[i].properties.KUNNOSSAPITAJA
                             + '" ->Info</button></div>';
                 layerGroup.addLayer(L.polygon(coordinates, options));
                 layerGroup.addLayer(marker.bindPopup(text));
@@ -114,7 +114,7 @@ showLocInfo: function(event) {
                 var text =  dataset[i].properties.ALUE_NIMI + '<br>' + '<div class="btn-group" id="buttons">' +
                             '<button type="button" class="btn btn-success" id="check-in">Check-in</button>' +
                             '<button type="button" class="btn btn-info" id="show-info">Info</button></div>';
-                
+
                 if(!dataset[i].geometry) {
                     continue;
                 }
@@ -125,7 +125,7 @@ showLocInfo: function(event) {
 
                 markers.push(marker);
             }
-            
+
             return L.layerGroup(markers);
         },
 
@@ -151,7 +151,9 @@ showLocInfo: function(event) {
 
         renderMap: function() {
             var position = window.App.userLocation;
-            this.map = L.map( 'map' ).setView([
+            this.map = L.map( 'map', {
+                attributionControl: false
+            } ).setView([
                 //keskitetään käyttäjän olinpaikkaan
                 position.coords.latitude,
                 position.coords.longitude
@@ -169,10 +171,13 @@ showLocInfo: function(event) {
                 ], {icon: L.AwesomeMarkers.icon({icon: 'icon-user', color: 'red', spin:true}) }).addTo(this.map);
             }
 
+            new L.Control.Attribution({
+                prefix: '<a href="lisenssi.html">Lisenssi</a>'
+            }).addTo(this.map);
 
             // drawLine(Pyoratiet.features);
         },
-        
+
                 drawLaavut: function(xml) {
             var markers = [];
             var view = this;
