@@ -1,10 +1,12 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
+@import 'variables';
 @import 'compass';
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'sass-bootstrap/lib/responsive';
 @import 'leaflet';
 @import 'fullscreen';
+@import 'profile';
 
 html, body {
     height: 100%;
@@ -83,21 +85,8 @@ html, body {
     margin: 40px auto;
 
     p, h1 {
-        color: white;
+        color: #222;
     }
-}
-
-.ugly-user {
-    width: 50px;
-}
-
-.achievement img {
-    width: 40px;
-    height: 35px;
-}
-
-.newsfeed {
-    height: 300px;
 }
 
 
