@@ -1,11 +1,15 @@
 /*global define*/
-define(['backbone',], function(Backbone) {
+define(['backbone',
+        'hbs!tmpl/profiili'
+        ],
+    function(Backbone, Template) {
     'use strict';
 
     var ProfileView = Backbone.View.extend({
+        template: Template,
 
         render: function() {
-            this.el.innerHTML='Profiilisivu!';
+            this.el.innerHTML=this.template();
             console.log(this);
             return this;
         }

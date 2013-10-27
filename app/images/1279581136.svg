@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="90" height="65" id="svg6571" version="1.1" inkscape:version="0.47 r22583" sodipodi:docname="Nuevo documento 57">
+  <defs id="defs6573">
+    <inkscape:perspective sodipodi:type="inkscape:persp3d" inkscape:vp_x="0 : 526.18109 : 1" inkscape:vp_y="0 : 1000 : 0" inkscape:vp_z="744.09448 : 526.18109 : 1" inkscape:persp3d-origin="372.04724 : 350.78739 : 1" id="perspective6579"/>
+    <inkscape:perspective id="perspective6539" inkscape:persp3d-origin="0.5 : 0.33333333 : 1" inkscape:vp_z="1 : 0.5 : 1" inkscape:vp_y="0 : 1000 : 0" inkscape:vp_x="0 : 0.5 : 1" sodipodi:type="inkscape:persp3d"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient6504" id="linearGradient6510" x1="229.10138" y1="84.662834" x2="232.85138" y2="84.662834" gradientUnits="userSpaceOnUse"/>
+    <linearGradient id="linearGradient6504">
+      <stop style="stop-color:#3d1c00;stop-opacity:1;" offset="0" id="stop6506"/>
+      <stop style="stop-color:#000000;stop-opacity:0;" offset="1" id="stop6508"/>
+    </linearGradient>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient6512" id="linearGradient6518" x1="234.15062" y1="84.418701" x2="245.65062" y2="84.418701" gradientUnits="userSpaceOnUse"/>
+    <linearGradient inkscape:collect="always" id="linearGradient6512">
+      <stop style="stop-color:#f2d694;stop-opacity:1;" offset="0" id="stop6514"/>
+      <stop style="stop-color:#f2d694;stop-opacity:0;" offset="1" id="stop6516"/>
+    </linearGradient>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient4573" id="linearGradient6496" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1.4998263,0,0,1.4999443,-80.405262,-39.850812)" x1="203.46347" y1="86.530014" x2="200.89566" y2="86.530014"/>
+    <linearGradient id="linearGradient4573">
+      <stop style="stop-color:#3d1c00;stop-opacity:1;" offset="0" id="stop4575"/>
+      <stop style="stop-color:#ffffff;stop-opacity:1;" offset="1" id="stop4577"/>
+    </linearGradient>
+    <radialGradient inkscape:collect="always" xlink:href="#linearGradient6134" id="radialGradient6140" cx="185.12445" cy="97.044403" fx="185.12445" fy="97.044403" r="2.5555556" gradientTransform="matrix(1,0,0,0.81999999,0,17.467994)" gradientUnits="userSpaceOnUse"/>
+    <linearGradient inkscape:collect="always" id="linearGradient6134">
+      <stop style="stop-color:#f2d694;stop-opacity:1;" offset="0" id="stop6136"/>
+      <stop style="stop-color:#f2d694;stop-opacity:0;" offset="1" id="stop6138"/>
+    </linearGradient>
+    <radialGradient r="2.5555556" fy="97.044403" fx="185.12445" cy="97.044403" cx="185.12445" gradientTransform="matrix(1,0,0,0.81999999,0,17.467994)" gradientUnits="userSpaceOnUse" id="radialGradient6569" xlink:href="#linearGradient6134" inkscape:collect="always"/>
+  </defs>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="6.9230769" inkscape:cx="45" inkscape:cy="32.5" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" inkscape:window-width="1366" inkscape:window-height="696" inkscape:window-x="0" inkscape:window-y="25" inkscape:window-maximized="1"/>
+  <g inkscape:label="Capa 1" inkscape:groupmode="layer" id="layer1" transform="translate(0,-987.36218)">
+    <g transform="matrix(3,0,0,3,-654.01414,752.37314)" id="g6520">
+      <rect ry="3.0065932" rx="3.0299602" y="80.825287" x="219.459" height="18.259157" width="27.186668" id="rect3657" style="fill:#f2d694;fill-opacity:1;stroke:none"/>
+      <path transform="matrix(1.1571429,0,0,1.0945946,39.531745,-11.393604)" d="m 172.88889,95.362183 c 0,2.270504 -1.74112,4.111111 -3.88889,4.111111 -2.14777,0 -3.88889,-1.840607 -3.88889,-4.111111 0,-2.270504 1.74112,-4.111112 3.88889,-4.111112 2.14777,0 3.88889,1.840608 3.88889,4.111112 z" sodipodi:ry="4.1111112" sodipodi:rx="3.8888888" sodipodi:cy="95.362183" sodipodi:cx="169" id="path3673" style="fill:none;stroke:#3d1c00;stroke-width:1.39945972;stroke-miterlimit:4.5;stroke-opacity:1;stroke-dasharray:none" sodipodi:type="arc"/>
+      <rect ry="0.66666645" rx="0.63891983" y="82.787834" x="229.10138" height="3.75" width="3.75" id="rect4449" style="fill:#3d1c00;fill-opacity:1;stroke:url(#linearGradient6510);stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"/>
+      <rect inkscape:transform-center-y="3.6945976" inkscape:transform-center-x="-7.7861911" ry="0.61333334" rx="0.49476326" y="82.693703" x="234.65062" height="3.4499998" width="10.5" id="rect4449-9" style="fill:#3d1c00;fill-opacity:1;stroke:url(#linearGradient6518);stroke-width:0.40000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"/>
+      <rect inkscape:transform-center-y="1.352903" inkscape:transform-center-x="-2.178898" ry="0.2245926" rx="0.50062931" y="79.51371" x="221.23398" height="1.2633332" width="2.9383337" id="rect4449-9-8" style="fill:#3d1c00;fill-opacity:1;stroke:#f2d694;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"/>
+      <rect transform="matrix(0,-1,1,0,0,0)" inkscape:transform-center-y="-13.490069" inkscape:transform-center-x="-0.1816482" ry="0.03015485" rx="3.0995128" y="224.79961" x="-99.033257" height="0.16962102" width="18.19191" id="rect4449-9-8-1" style="fill:#3d1c00;fill-opacity:1;stroke:none"/>
+      <path id="rect4571" d="m 222.4816,80.776943 c -1.25814,0 -2.25,0.78452 -2.25,1.734375 l 0,14.859375 c 0,0.937662 0.96801,1.714591 2.20313,1.734375 0.0161,2.58e-4 0.0307,0 0.0468,0 l 2.29687,0 0,-18.28125 -2.01562,0 c -0.0958,-0.0095 -0.18179,-0.04687 -0.28125,-0.04687 z" style="opacity:0.20264318;fill:url(#linearGradient6496);fill-opacity:1;stroke:none"/>
+      <path transform="matrix(1.3206522,0,0,1.6105515,-9.3608975,-63.271297)" d="m 187.68001,97.044403 c 0,1.157343 -1.14416,2.095556 -2.55556,2.095556 -1.41139,0 -2.55555,-0.938213 -2.55555,-2.095556 0,-1.157343 1.14416,-2.095555 2.55555,-2.095555 1.4114,0 2.55556,0.938212 2.55556,2.095555 z" sodipodi:ry="2.0955555" sodipodi:rx="2.5555556" sodipodi:cy="97.044403" sodipodi:cx="185.12445" id="path6089" style="fill:#3d1c00;fill-opacity:1;stroke:none" sodipodi:type="arc"/>
+      <path transform="matrix(1.173913,0,0,1.4316013,17.775601,-45.90935)" d="m 187.68001,97.044403 c 0,1.157343 -1.14416,2.095556 -2.55556,2.095556 -1.41139,0 -2.55555,-0.938213 -2.55555,-2.095556 0,-1.157343 1.14416,-2.095555 2.55555,-2.095555 1.4114,0 2.55556,0.938212 2.55556,2.095555 z" sodipodi:ry="2.0955555" sodipodi:rx="2.5555556" sodipodi:cy="97.044403" sodipodi:cx="185.12445" id="path6089-1" style="fill:url(#radialGradient6569);fill-opacity:1;stroke:none" sodipodi:type="arc"/>
+    </g>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>camera</dc:title>
+        <dc:date>2010-07-19T23:12:16</dc:date>
+        <dc:description>digital camera</dc:description>
+        <dc:source>http://openclipart.org/detail/73891/camera-by-golo</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>golo</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>camera</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>photo</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
