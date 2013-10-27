@@ -3,6 +3,7 @@ define([
     'backbone',
     'leaflet',
     'views/selection-view',
+    'views/paikka-view',
     'models/selection',
     'collections/selection-collection',
     'data/koirapuistot',
@@ -16,7 +17,7 @@ define([
     'data/leikkipaikat',
     'data/laavut',
     'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
-], function(Backbone, L, SelectionView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat, Laavut) {
+], function(Backbone, L, SelectionView, PaikkaView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat, Laavut) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -26,7 +27,13 @@ define([
         config: {
             appKey: '32fb713c6d034b4a9d8df1d4f0768b5b'
         },
-
+        
+events : {
+    
+    'click #check-in': 'checkIn',
+    'click #show-info': 'showLocInfo'
+},
+ 
         initialize: function() {
             window.App.Vent.on('filterChanged', this.filterChanged, this);
             this.luontopolkurastit = this.drawPoints  (Luontopolkurastit.features, {icon: 'icon-compass', color: 'green', spin:false});
@@ -40,9 +47,21 @@ define([
             this.laavut            = this.drawLaavut  (Laavut);
         },
 
+checkIn: function (event) {
+    var pancakes = $(event.target).data('rajapinta');
+ console.log(pancakes);   
+},
+
+showLocInfo: function(event) {
+    var dataset = $(event.target).data('rajapinta');
+    console.log(dataset);
+     $('#page').html(new PaikkaView({loc:dataset}).render().el);
+},
+
         filterChanged: function(model) {
             return model.get('active') ? this.map.addLayer(model.get('layer')) : this.map.removeLayer(model.get('layer'));
         },
+        
 
         drawPolygons: function(dataset, options, ikoni) {
             options = options || {};
@@ -70,8 +89,8 @@ define([
                 // Lisätään polygoni karttaan
                 // Lisätään polygoneihin popup, joka esittää alueen nimen
                 var text =  dataset[i].properties.ALUE_NIMI + '<br>' + '<div class="btn-group" id="buttons">' +
-                            '<button type="button" class="btn btn-success" id="Check-in">Check-in</button>' +
-                            '<a href="#location-info" class="btn btn-info" id="show-info">Info</a></div>';
+                            '<button type="button" class="btn btn-success" id="check-in" data-rajapinta="' + dataset[i] + '">Check-in</button>' +
+                            '<button type="button" class="btn btn-info" id="show-info" data-rajapinta="' + dataset[i] + '">Info</button></div>';
                 layerGroup.addLayer(L.polygon(coordinates, options));
                 layerGroup.addLayer(marker.bindPopup(text));
             }
@@ -83,12 +102,12 @@ define([
             var markers = [];
             for (var i = dataset.length - 1; i >= 0; i--) {
                 var text =  dataset[i].properties.ALUE_NIMI + '<br>' + '<div class="btn-group" id="buttons">' +
-                            '<button type="button" class="btn btn-success" id="Check-in">Check-in</button>' +
-                            '<a href="#location-info" class="btn btn-info" id="show-info">Info</a></div>';
+                            '<button type="button" class="btn btn-success" id="check-in">Check-in</button>' +
+                            '<button type="button" class="btn btn-info" id="show-info">Info</button></div>';
+                
                 if(!dataset[i].geometry) {
                     continue;
                 }
-
                 var marker = L.marker([
                     dataset[i].geometry.coordinates[1],
                     dataset[i].geometry.coordinates[0]
@@ -96,6 +115,7 @@ define([
 
                 markers.push(marker);
             }
+            
             return L.layerGroup(markers);
         },
 
@@ -142,8 +162,8 @@ define([
 
             // drawLine(Pyoratiet.features);
         },
-
-        drawLaavut: function(xml) {
+        
+                drawLaavut: function(xml) {
             var markers = [];
             var view = this;
 
@@ -179,7 +199,6 @@ define([
             ]);
 
             this.$el.append(new SelectionView({ collection: selectionCollection }).render().el);
-
             return this;
         }
     });
