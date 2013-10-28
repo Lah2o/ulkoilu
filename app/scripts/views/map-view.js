@@ -44,7 +44,7 @@ events : {
             this.venerannat        = this.drawPolygons(Venerannat.features, {color: 'turquoise' }, {icon: 'icon-tint', color: 'darkblue', spin:false});
             this.rullalautailu     = this.drawPoints  (Rullalautailu.features, {icon: 'icon-repeat', color: 'darkred'});
             this.leikkipaikat      = this.drawPoints  (Leikkipaikat.features, {icon: 'icon-heart', color: 'cadetblue'});
-            this.laavut            = this.drawLaavut  (Laavut);
+            this.laavut            = this.drawLaavut  (Laavut, {icon: 'icon-leaf', color: 'orange'});
         },
 
 checkIn: function (event) {
@@ -178,7 +178,7 @@ showLocInfo: function(event) {
             // drawLine(Pyoratiet.features);
         },
 
-                drawLaavut: function(xml) {
+        drawLaavut: function(xml, ikoni) {
             var markers = [];
             var view = this;
 
@@ -189,7 +189,7 @@ showLocInfo: function(event) {
                 markers.push(L.marker([
                     $(this).attr('lat'),
                     $(this).attr('lon')
-                ]).bindPopup(
+                ], {icon: L.AwesomeMarkers.icon(ikoni) }).bindPopup(
                     '<strong>' + name + '</strong><br>' +
                     sym + '<br>' +
                     desc
