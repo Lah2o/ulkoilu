@@ -12,7 +12,6 @@ require.config({
         },
         handlebars: {
             deps: [],
-            exports: 'Handlebars'
         },
 
         bootstrapAffix: {
@@ -66,7 +65,6 @@ require.config({
 
         underscore: '../bower_components/underscore/underscore',
         backbone: '../bower_components/backbone/backbone',
-        handlebars: '../bower_components/handlebars/handlebars',
 
         leaflet: '../bower_components/leaflet-dist/leaflet',
 
@@ -74,7 +72,8 @@ require.config({
         text: '../bower_components/requirejs-text/text',
         tmpl: 'template',
 
-        /* require handlebars plugin - Alex Sexton */
+       /* Handlebars */
+        handlebars: '../bower_components/require-handlebars-plugin/Handlebars',
         i18nprecompile: '../bower_components/require-handlebars-plugin/hbs/i18nprecompile',
         json2: '../bower_components/require-handlebars-plugin/hbs/json2',
         hbs: '../bower_components/require-handlebars-plugin/hbs',

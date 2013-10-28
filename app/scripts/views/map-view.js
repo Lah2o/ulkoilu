@@ -9,7 +9,6 @@ define([
     'data/koirapuistot',
     'data/luontopolkurastit',
     'data/talviliukumaet',
-    'data/pyoratiet',
     'data/kentat',
     'data/luontopolkureitit',
     'data/venerannat',
@@ -17,7 +16,7 @@ define([
     'data/leikkipaikat',
     'data/laavut',
     'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
-], function(Backbone, L, SelectionView, PaikkaView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Pyoratiet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat, Laavut) {
+], function(Backbone, L, SelectionView, PaikkaView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat, Laavut) {
     'use strict';
 
     var MapView = Backbone.View.extend({
