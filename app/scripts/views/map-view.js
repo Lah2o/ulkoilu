@@ -15,8 +15,9 @@ define([
     'data/rullalautailu',
     'data/leikkipaikat',
     'data/laavut',
+    'data/events',
     'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
-], function(Backbone, L, SelectionView, PaikkaView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat, Laavut) {
+], function(Backbone, L, SelectionView, PaikkaView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat, Laavut, Events) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -44,6 +45,7 @@ events : {
             this.rullalautailu     = this.drawPoints  (Rullalautailu.features, {icon: 'icon-repeat', color: 'darkred'});
             this.leikkipaikat      = this.drawPoints  (Leikkipaikat.features, {icon: 'icon-heart', color: 'cadetblue'});
             this.laavut            = this.drawLaavut  (Laavut, {icon: 'icon-leaf', color: 'orange'});
+            this.events            = this.drawEvents  (Events.features, {icon: 'icn-heart', color: 'cadetblue'});
         },
 
 checkIn: function (event) {
@@ -198,6 +200,27 @@ showLocInfo: function(event) {
             return L.layerGroup(markers);
         },
 
+        drawEvents: function(dataset, ikoni) {
+            var markers = [];
+            for (var i = dataset.length - 1; i >= 0; i--) {
+                var text =  dataset[i].properties.NIMI + '<br>' + '<div class="btn-group" id="buttons">' +
+                            '<button type="button" class="btn btn-success" id="check-in">Check-in</button>' +
+                            '<button type="button" class="btn btn-info" id="show-info">Info</button></div>';
+                
+                if(!dataset[i].geometry) {
+                    continue;
+                }
+                var marker = L.marker([
+                    dataset[i].geometry.coordinates[1],
+                    dataset[i].geometry.coordinates[0]
+                ], {icon: L.AwesomeMarkers.icon(ikoni) }).bindPopup(text);
+
+                markers.push(marker);
+            }
+            
+            return L.layerGroup(markers);
+        },
+
         render: function() {
             this.$el.html('<div id="map"></div>');
             var selectionCollection = new SelectionCollection([
@@ -209,7 +232,8 @@ showLocInfo: function(event) {
                 { name: 'Soutuvenerannat'         , layer: this.venerannat        },
                 { name: 'Rullalautailualueet'     , layer: this.rullalautailu     },
                 { name: 'Leikkipaikat'            , layer: this.leikkipaikat      },
-                { name: 'Laavut'                  , layer: this.laavut            }
+                { name: 'Laavut'                  , layer: this.laavut            },
+                { name: 'Tapahtumat'              , layer: this.events            }
             ]);
 
             this.$el.append(new SelectionView({ collection: selectionCollection }).render().el);
