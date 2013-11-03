@@ -19,6 +19,7 @@ define([
 
         events: {
             'click #info':'showInfo',
+            'click #locale':'showEnglish',
             'click #login-button':'showLogin'
         },
 
@@ -52,6 +53,17 @@ define([
                 this.$('#info-window').remove();
             }
         },
+        
+        showEnglish: function() {
+            if(!document.getElementById('eng-window')) {
+                this.$el.append('<div class="alert alert-danger" id="eng-window">Translation in progress</div>');
+            }
+            else {
+                this.$('#eng-window').remove();
+            }
+            
+        },
+
 
         routeChanged: function(router, routeFunction, params) {
             this.collection.each(function(model) {
