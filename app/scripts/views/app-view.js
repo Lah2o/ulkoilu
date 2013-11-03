@@ -16,7 +16,8 @@ define([
 			Backbone.history.start();
             this.navItems = new NavCollection([
                 { route: '', title: 'Kartta' },
-                { route: 'haaste', title: 'Haastesivu' }
+                { route: 'haaste', title: 'Haastesivu' },
+                { route: 'luotapahtuma', title: 'Luo Tapahtuma' }
             ]);
             var currentItem = this.navItems.findWhere({route: Backbone.history.fragment});
             if( currentItem ) currentItem.set('active', 'active');
