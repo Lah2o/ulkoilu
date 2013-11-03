@@ -6,8 +6,9 @@ define([
     'views/single-photo-view',
     'collections/photos-collection',
     'views/profile-view',
-    'views/registration-view'
-], function(Backbone, MapView, HaasteView, KuvaView, PhotosCollection, ProfileView, RegistrationView) {
+    'views/registration-view',
+    'views/create-event-view'
+], function(Backbone, MapView, HaasteView, KuvaView, PhotosCollection, ProfileView, RegistrationView, CreateEventView) {
 
     'use strict';
 
@@ -32,6 +33,9 @@ define([
                 this.haasteView = this.haasteView || new HaasteView({ collection: this.photosCollection });
 
                 $('#page').html(this.haasteView.render().el);
+                break;
+            case 'luotapahtuma':
+                $('#page').html(new CreateEventView().render().el);
                 break;
             case 'profiili':
                 this.photosCollection = this.photosCollection || new PhotosCollection();
