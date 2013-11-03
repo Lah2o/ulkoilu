@@ -17,7 +17,7 @@ define([
     'data/laavut',
     'data/events',
     'https://raw.github.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.js'
-], function(Backbone, L, SelectionView, PaikkaView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat, Laavut, Events) {
+], function(Backbone, L, SelectionView, PaikkaView, Selection, SelectionCollection, Koirapuistot, Luontopolkurastit, Talviliukumaet, Kentat, Luontopolkureitit, Venerannat, Rullalautailu, Leikkipaikat, Laavut, Tapahtumat) {
     'use strict';
 
     var MapView = Backbone.View.extend({
@@ -28,11 +28,10 @@ define([
             appKey: '32fb713c6d034b4a9d8df1d4f0768b5b'
         },
 
-events : {
-
-    'click #check-in': 'checkIn',
-    'click #show-info': 'showLocInfo'
-},
+        events: {
+            'click #check-in': 'checkIn',
+            'click #show-info': 'showLocInfo'
+        },
 
         initialize: function() {
             window.App.Vent.on('filterChanged', this.filterChanged, this);
@@ -45,25 +44,25 @@ events : {
             this.rullalautailu     = this.drawPoints  (Rullalautailu.features, {icon: 'icon-repeat', color: 'darkred'});
             this.leikkipaikat      = this.drawPoints  (Leikkipaikat.features, {icon: 'icon-heart', color: 'cadetblue'});
             this.laavut            = this.drawLaavut  (Laavut, {icon: 'icon-leaf', color: 'orange'});
-            this.events            = this.drawEvents  (Events.features, {icon: 'icn-heart', color: 'cadetblue'});
+            this.tapahtumat        = this.drawEvents  (Tapahtumat.features, {icon: 'icon-heart', color: 'cadetblue'});
         },
 
-checkIn: function (event) {
-    var pancakes = $(event.target).data('rajapinta');
- console.log(pancakes);
-},
+        checkIn: function (event) {
+            var pancakes = $(event.target).data('rajapinta');
+            console.log(pancakes);
+        },
 
-showLocInfo: function(event) {
-    var nimi = $(event.target).data('nimi');
-    var katu = $(event.target).data('katu');
-    var paikka = $(event.target).data('paikka');
-    var kaytto = $(event.target).data('kaytto');
-    var kausi = $(event.target).data('kausi');
-    var erikois = $(event.target).data('erikois');
-    var huolto = $(event.target).data('huolto');
-    console.log(nimi, katu, paikka, kaytto, kausi, erikois, huolto);
-     $('#page').html(new PaikkaView({nimi:nimi, katu:katu, paikka:paikka, kaytto:kaytto, kausi:kausi, erikois:erikois, huolto:huolto}).render().el);
-},
+        showLocInfo: function(event) {
+            var nimi = $(event.target).data('nimi');
+            var katu = $(event.target).data('katu');
+            var paikka = $(event.target).data('paikka');
+            var kaytto = $(event.target).data('kaytto');
+            var kausi = $(event.target).data('kausi');
+            var erikois = $(event.target).data('erikois');
+            var huolto = $(event.target).data('huolto');
+            console.log(nimi, katu, paikka, kaytto, kausi, erikois, huolto);
+            $('#page').html(new PaikkaView({nimi:nimi, katu:katu, paikka:paikka, kaytto:kaytto, kausi:kausi, erikois:erikois, huolto:huolto}).render().el);
+        },
 
         filterChanged: function(model) {
             return model.get('active') ? this.map.addLayer(model.get('layer')) : this.map.removeLayer(model.get('layer'));
@@ -206,7 +205,7 @@ showLocInfo: function(event) {
                 var text =  dataset[i].properties.NIMI + '<br>' + '<div class="btn-group" id="buttons">' +
                             '<button type="button" class="btn btn-success" id="check-in">Check-in</button>' +
                             '<button type="button" class="btn btn-info" id="show-info">Info</button></div>';
-                
+
                 if(!dataset[i].geometry) {
                     continue;
                 }
@@ -214,10 +213,8 @@ showLocInfo: function(event) {
                     dataset[i].geometry.coordinates[1],
                     dataset[i].geometry.coordinates[0]
                 ], {icon: L.AwesomeMarkers.icon(ikoni) }).bindPopup(text);
-
                 markers.push(marker);
             }
-            
             return L.layerGroup(markers);
         },
 
@@ -233,7 +230,7 @@ showLocInfo: function(event) {
                 { name: 'Rullalautailualueet'     , layer: this.rullalautailu     },
                 { name: 'Leikkipaikat'            , layer: this.leikkipaikat      },
                 { name: 'Laavut'                  , layer: this.laavut            },
-                { name: 'Tapahtumat'              , layer: this.events            }
+                { name: 'Tapahtumat'              , layer: this.tapahtumat        }
             ]);
 
             this.$el.append(new SelectionView({ collection: selectionCollection }).render().el);
